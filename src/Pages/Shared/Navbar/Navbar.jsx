@@ -1,26 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-
-    const navOptions = <>
-    <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              {/* <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul> */}
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+  const navOptions = (
+    <>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/menu">Menu</Link>
+      </li>
     </>
+  );
   return (
     <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-black text-white">
       <div className="navbar-start">
@@ -51,9 +42,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl">Bistro Boss</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-         {navOptions}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>
