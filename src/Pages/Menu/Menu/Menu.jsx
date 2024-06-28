@@ -6,13 +6,17 @@ import useMenu from '../../../hooks/useMenu'
 import SectionTitle from '../../../components/SectionTitle/SectionTitle'
 import MenuCategory from '../MenuCategory/MenuCategory'
 import dessertImg from "../../../assets/menu/dessert-bg.jpeg"
+import pizzaImg from "../../../assets/menu/pizza-bg.jpg"
+import saladImg from "../../../assets/menu/salad-bg.jpg"
+import soupImg from "../../../assets/menu/soup-bg.jpg"
 
 const Menu = () => {
   const [menu] = useMenu();
   const desserts = menu.filter((item) => item.category === 'dessert');
-  const salad = menu.filter((item) => item.category === 'salad');
-  const pizza = menu.filter((item) => item.category === 'pizza');
+  const salads = menu.filter((item) => item.category === 'salad');
+  const pizzas = menu.filter((item) => item.category === 'pizza');
   const offered = menu.filter((item) => item.category === 'offered');
+  const soups = menu.filter((item) => item.category === 'soup');
 
 
   return (
@@ -24,6 +28,9 @@ const Menu = () => {
         <SectionTitle subHeading="Don't Miss" heading="Today's Offer"></SectionTitle>
         <MenuCategory items={offered}></MenuCategory>
         <MenuCategory title="Desserts" items={desserts} img={dessertImg}></MenuCategory>
+        <MenuCategory title="Pizzas" items={pizzas} img={pizzaImg}></MenuCategory>
+        <MenuCategory title="Salads" items={salads} img={saladImg}></MenuCategory>
+        <MenuCategory title="Soups" items={soups} img={soupImg}></MenuCategory>
     </div>
   )
 }
