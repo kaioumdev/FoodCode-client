@@ -18,7 +18,7 @@ const useMenu = () => {
        })
     }, [])
 
-    return [menu, loading, error]
+    return [menu, loading, error];
 }
 
 export default useMenu

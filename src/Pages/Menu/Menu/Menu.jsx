@@ -2,17 +2,24 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import Cover from '../../Shared/Cover/Cover'
 import menuImg from "../../../assets/menu/banner3.jpg"
-import PopularMenu from '../../Home/PopularMenu/PopularMenu'
+import useMenu from '../../../hooks/useMenu'
+import SectionTitle from '../../../components/SectionTitle/SectionTitle'
 
 const Menu = () => {
+  const [menu] = useMenu();
+  const dessert = menu.filter((item) => item.category === 'dessert');
+  const salad = menu.filter((item) => item.category === 'salad');
+  const pizza = menu.filter((item) => item.category === 'pizza');
+  const offered = menu.filter((item) => item.category === 'offered');
+
+
   return (
     <div>
         <Helmet>
             <title>Bistro Boss | Menu</title>
         </Helmet>
         <Cover img={menuImg} title="our menu"></Cover>
-        <PopularMenu></PopularMenu>
-        <h3>Menu</h3>
+        <SectionTitle subHeading="Don't Miss" heading="Today's Offer"></SectionTitle>
     </div>
   )
 }
