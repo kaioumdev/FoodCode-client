@@ -1,8 +1,13 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 
 const Menu = () => {
   return (
-    <div>Menu</div>
+    <div>
+        <Helmet>
+            <title>Bistro Boss | Menu</title>
+        </Helmet>
+    </div>
   )
 }
 
