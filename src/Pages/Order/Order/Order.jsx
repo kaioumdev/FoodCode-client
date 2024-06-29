@@ -3,9 +3,9 @@ import shopImg from "../../../assets/shop/banner2.jpg";
 import Cover from "../../Shared/Cover/Cover";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import FoodCard from "../../../components/FoodCard/FoodCard";
 import useMenu from "../../../hooks/useMenu";
 import OrderTab from "../OrderTab/OrderTab";
+import { useParams } from "react-router-dom";
 
 const Order = () => {
     const [tabIndex, setTabIndex] = useState(0);
@@ -15,6 +15,8 @@ const Order = () => {
     const pizzas = menu.filter((item) => item.category === 'pizza');
     const drinks = menu.filter((item) => item.category === 'drinks');
     const soups = menu.filter((item) => item.category === 'soup');
+    const {category} = useParams()
+    console.log(category)
   return (
     <div>
       <Cover img={shopImg} title="Order Shop"></Cover>
