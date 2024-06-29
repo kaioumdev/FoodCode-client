@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const Navbar = () => {
   const navOptions = (
     <>
@@ -9,6 +10,9 @@ const Navbar = () => {
       </li>
       <li>
         <Link to="/menu">Menu</Link>
+      </li>
+      <li>
+        <Link to="/order">Order</Link>
       </li>
     </>
   );
