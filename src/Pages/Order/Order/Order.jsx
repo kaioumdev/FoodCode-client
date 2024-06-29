@@ -32,10 +32,10 @@ const Order = () => {
         <TabPanel>
             <OrderTab items={pizzas}></OrderTab>
         </TabPanel>
-        {/* <TabPanel>
+        <TabPanel>
             <OrderTab items={soups}></OrderTab>
         </TabPanel>
-        <TabPanel>
+        {/* <TabPanel>
             <OrderTab items={desserts}></OrderTab>
         </TabPanel> */}
         <TabPanel></TabPanel>
