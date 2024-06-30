@@ -2,19 +2,36 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const {createUser} = useContext(AuthContext)
+  const {createUser, updateUserProfile} = useContext(AuthContext)
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate()
   const onSubmit = (data) => {
     createUser(data.email, data.password)
     .then((result) => {
       const logedInuser = result.user;
       console.log(logedInuser);
+      updateUserProfile(data.name, data.photoURL)
+      .then(() => {
+        console.log('User profile updated successfully')
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User created successfully",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate("/")
+      })
     })
     console.log(data);
   };
@@ -49,6 +66,22 @@ const SignUp = () => {
                 />
                 {errors.name && (
                   <span className="text-red-600">Name is required</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  {...register("photoURL", { required: true })}
+                  placeholder="name"
+                  className="input input-bordered"
+                  required
+                />
+                {errors.photoURL && (
+                  <span className="text-red-600">Photo URL is required</span>
                 )}
               </div>
               <div className="form-control">
