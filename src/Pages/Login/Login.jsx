@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -10,8 +11,8 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const captchaRef = useRef(null);
-  const { singIn } = useContext(AuthContext);
+  // const captchaRef = useRef(null);
+  const { signIn } = useContext(AuthContext);
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -20,18 +21,35 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    singIn(email, password).then((result) => {
+    signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      Swal.fire({
+        title: "User login successful",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
     });
   };
 
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value) == true) {
       setDisabled(false);
     } else {
-      setDisabled(true);
+      // setDisabled(true);
     }
   };
   return (
@@ -57,6 +75,7 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -68,6 +87,7 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
@@ -84,17 +104,17 @@ const Login = () => {
                 </label>
                 <input
                   type="text"
-                  ref={captchaRef}
+                  onBlur={handleValidateCaptcha}
+                  // ref={captchaRef}
                   placeholder="Type the captcha above"
                   className="input input-bordered"
                   required
                 />
-                <button
-                  onClick={handleValidateCaptcha}
+                {/* <button
                   className="btn btn-outline btn-xm mt-2"
                 >
                   Validate
-                </button>
+                </button> */}
               </div>
               <div className="form-control mt-6">
                 <input
