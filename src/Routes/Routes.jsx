@@ -20,19 +20,19 @@ export const router = createBrowserRouter([
           element: <Home />,
         },
         {
-          path: "/menu",
+          path: "menu",
           element: <Menu />,
         },
         {
-          path: "/order/:category",
+          path: "order/:category",
           element: <Order />,
         },
         {
-          path: "/login",
+          path: "login",
           element: <Login />,
         },
         {
-          path: "/signup",
+          path: "signup",
           element: <SignUp />,
         }
       ],
