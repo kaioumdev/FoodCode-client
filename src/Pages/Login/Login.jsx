@@ -6,11 +6,16 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
+  const location = useLocation()
+  let navigate = useNavigate();
+
+  let from = location.state?.from?.pathname || "/"
+
   // const captchaRef = useRef(null);
   const { signIn } = useContext(AuthContext);
   useEffect(() => {
@@ -41,6 +46,7 @@ const Login = () => {
           `
         }
       });
+      navigate(from, { replace: true });
     });
   };
 
