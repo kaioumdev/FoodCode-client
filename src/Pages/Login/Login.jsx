@@ -1,27 +1,31 @@
 import React, { useEffect, useRef, useState } from "react";
-import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';                                                         
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 
 const Login = () => {
-    const [disabled, setDisabled] = useState(true);
-    const captchaRef = useRef(null)
-    useEffect(() => {
-        loadCaptchaEnginge(6); 
-    },[])
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-    }
+  const [disabled, setDisabled] = useState(true);
+  const captchaRef = useRef(null);
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+  };
 
-    const handleValidateCaptcha = () => {
-        const user_captcha_value = captchaRef.current.value;
-        if (validateCaptcha(user_captcha_value)==true) {
-            setDisabled(false)
-        }else{
-            setDisabled(true)
-        }
+  const handleValidateCaptcha = () => {
+    const user_captcha_value = captchaRef.current.value;
+    if (validateCaptcha(user_captcha_value) == true) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
     }
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -64,7 +68,7 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
-              <LoadCanvasTemplate />
+                <LoadCanvasTemplate />
               </label>
               <input
                 type="text"
@@ -73,11 +77,20 @@ const Login = () => {
                 className="input input-bordered"
                 required
               />
-              <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xm mt-2">Validate</button>
+              <button
+                onClick={handleValidateCaptcha}
+                className="btn btn-outline btn-xm mt-2"
+              >
+                Validate
+              </button>
             </div>
             <div className="form-control mt-6">
-              <input disabled={disabled} type="submit" value="login" className="btn btn-primary">
-              </input>
+              <input
+                disabled={disabled}
+                type="submit"
+                value="login"
+                className="btn btn-primary"
+              ></input>
             </div>
           </form>
         </div>
