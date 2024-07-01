@@ -92,13 +92,16 @@
 // export default Navbar;
 
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart()
+  console.log(cart)
 
   const handleLogOut = () => {
     logOut()
@@ -124,7 +127,7 @@ const Navbar = () => {
         <Link to="/">
           <button className="btn flex items-center justify-center">
             <FaShoppingCart />
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">+{cart?.data?.length}</div>
           </button>
         </Link>
       </li>
