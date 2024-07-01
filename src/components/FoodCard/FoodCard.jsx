@@ -1,12 +1,13 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FoodCard = ({item}) => {
     const {name, image, price, recipe} = item;
     const {user} = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
     const handleAddToCart = (food) => {
       if(user && user.email){
         // TODO: send cart item to the database
@@ -23,7 +24,7 @@ const FoodCard = ({item}) => {
         }).then((result) => {
           if (result.isConfirmed) {
            //send user to the login page
-           navigate("/login");
+           navigate("/login", {state: {from: location}});
           }
         });
       }
