@@ -14,7 +14,8 @@ const Login = () => {
   const location = useLocation()
   let navigate = useNavigate();
 
-  let from = location.state?.from?.pathname || "/"
+  let from = location.state?.from?.pathname || "/";
+  console.log('state in the location login page', location.state);
 
   // const captchaRef = useRef(null);
   const { signIn } = useContext(AuthContext);
@@ -114,7 +115,7 @@ const Login = () => {
                   // ref={captchaRef}
                   placeholder="Type the captcha above"
                   className="input input-bordered"
-                  required
+                  // required
                 />
                 {/* <button
                   className="btn btn-outline btn-xm mt-2"
@@ -123,8 +124,9 @@ const Login = () => {
                 </button> */}
               </div>
               <div className="form-control mt-6">
+                {/* apply disabled for re captcha*/}
                 <input
-                  disabled={disabled}
+                  disabled={false}
                   type="submit"
                   value="login"
                   className="btn btn-primary"
