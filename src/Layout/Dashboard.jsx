@@ -9,7 +9,7 @@ const Dashboard = () => {
     <div className="flex">
       <div className="w-64 min-h-screen bg-orange-400">
         <ul className="menu p-4">
-        <li>
+          <li>
             <NavLink to="dashboard/userHome">
               <FaHome></FaHome>
               User Home
@@ -39,23 +39,23 @@ const Dashboard = () => {
               My Bookings
             </NavLink>
           </li>
-        <div className="divider"></div>
-        <li>
+          <div className="divider"></div>
+          <li>
             <NavLink to="/">
               <FaHome></FaHome>
-              Home 
+              Home
             </NavLink>
           </li>
           <li>
             <NavLink to="/menu">
               <TiThMenuOutline></TiThMenuOutline>
-              Menu 
+              Menu
             </NavLink>
           </li>
           <li>
             <NavLink to="/order/salads">
               <FaList></FaList>
-              Order 
+              Order
             </NavLink>
           </li>
         </ul>
