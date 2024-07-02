@@ -33,18 +33,10 @@ const Cart = () => {
                       />
                     </div>
                   </div>
-                  <div>
-                    <div className="font-bold">Hart Hagerty</div>
-                    <div className="text-sm opacity-50">United States</div>
-                  </div>
                 </div>
               </td>
               <td>
                 {item.name}
-                <br />
-                <span className="badge badge-ghost badge-sm">
-                  Desktop Support Technician
-                </span>
               </td>
               <td>{totalPrice}</td>
               <th>
