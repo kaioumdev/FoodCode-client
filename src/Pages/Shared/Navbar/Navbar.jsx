@@ -127,7 +127,7 @@ const Navbar = () => {
         <Link to="/">
           <button className="btn flex items-center justify-center">
             <FaShoppingCart />
-            <div className="badge badge-secondary">+{cart?.data?.length}</div>
+            <div className="badge badge-secondary">+{cart?.length}</div>
           </button>
         </Link>
       </li>

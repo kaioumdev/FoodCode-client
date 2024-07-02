@@ -8,7 +8,7 @@ const useCart = () => {
     queryKey: ["cart"],
     queryFn: async () => {
       const res = await axiosSecure.get("/carts");
-      return res;
+      return res.data;
     },
   });
   return [cart];
