@@ -124,7 +124,7 @@ const Navbar = () => {
         <Link to="/signup">SignUp</Link>
       </li>
       <li className="flex items-center justify-center">
-        <Link to="/">
+        <Link to="/dashboard/cart">
           <button className="btn flex items-center justify-center">
             <FaShoppingCart />
             <div className="badge badge-secondary">+{cart?.length}</div>
