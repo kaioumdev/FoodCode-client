@@ -143,7 +143,6 @@ const Login = () => {
               </small>
             </p>
           <div className="divider"></div>
-          {/* <div></div> */}
           <SocialLogin></SocialLogin>
           </div>
         </div>
