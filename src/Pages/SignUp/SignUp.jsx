@@ -2,44 +2,54 @@ import React, { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
-  const {createUser, updateUserProfile} = useContext(AuthContext)
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axsisPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-    .then((result) => {
+    createUser(data.email, data.password).then((result) => {
       const logedInuser = result.user;
       console.log(logedInuser);
-      updateUserProfile(data.name, data.photoURL)
-      .then(() => {
-        console.log('User profile updated successfully')
-        reset();
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "User created successfully",
-          showConfirmButton: false,
-          timer: 1500
+      updateUserProfile(data.name, data.photoURL).then(() => {
+        console.log("User profile updated successfully");
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          photoURL: data.photoURL,
+        };
+        axsisPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            console.log(res.data);
+            reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "User created successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          }
         });
-        navigate("/")
-      })
-    })
+      });
+    });
     console.log(data);
   };
   return (
     <>
-    <Helmet>
-      <title>Bistro Boss | Sign Up</title>
-    </Helmet>
+      <Helmet>
+        <title>Bistro Boss | Sign Up</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
