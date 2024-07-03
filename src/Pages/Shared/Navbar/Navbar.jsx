@@ -139,7 +139,9 @@ const Navbar = () => {
         </li>
       ) : (
         <li className="flex items-center justify-center">
-          <Link to="/login">Login</Link>
+         <button>
+         <Link to="/login">Login</Link>
+         </button>
         </li>
       )}
     </>

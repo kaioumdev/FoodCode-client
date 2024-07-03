@@ -14,7 +14,7 @@ const Login = () => {
   const location = useLocation()
   let navigate = useNavigate();
 
-  let from = location.state?.from?.pathname || "/";
+  let from = location?.state?.from?.pathname || "/";
   console.log('state in the location login page', location.state);
 
   // const captchaRef = useRef(null);
