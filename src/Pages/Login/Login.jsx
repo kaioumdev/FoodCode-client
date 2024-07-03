@@ -141,6 +141,8 @@ const Login = () => {
                 </Link>
               </small>
             </p>
+          <div className="divider"></div>
+          {/* <div></div> */}
           </div>
         </div>
       </div>
