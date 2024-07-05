@@ -22,31 +22,31 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="dashboard/adminHome">
+                <NavLink to="/dashboard/adminHome">
                   <FaHome></FaHome>
                   Admin Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="dashboard/addItems">
+                <NavLink to="/dashboard/addItems">
                   <FaUtensils></FaUtensils>
                   Add Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="dashboard/manageItems">
+                <NavLink to="/dashboard/manageItems">
                   <FaList></FaList>
                   Manage Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="dashboard/bookings">
+                <NavLink to="/dashboard/bookings">
                   <FaBook></FaBook>
                   Manage Bookings
                 </NavLink>
               </li>
               <li>
-                <NavLink to="dashboard/users">
+                <NavLink to="/dashboard/users">
                   <FaUsers></FaUsers>
                   All Users
                 </NavLink>
@@ -55,33 +55,33 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="dashboard/userHome">
+                <NavLink to="/dashboard/adminHome">
                   <FaHome></FaHome>
-                  User Home
+                  Admin Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="dashboard/cart">
-                  <FaShoppingCart></FaShoppingCart>
-                  My Cart
+                <NavLink to="/dashboard/addItems">
+                  <FaUtensils></FaUtensils>
+                  Add Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="dashboard/reservation">
-                  <FaCalendar></FaCalendar>
-                  Reservation
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="dashboard/review">
-                  <MdReviews></MdReviews>
-                  Add a Review
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="dashboard/bookings">
+                <NavLink to="/dashboard/manageItems">
                   <FaList></FaList>
-                  My Bookings
+                  Manage Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/bookings">
+                  <FaBook></FaBook>
+                  Manage Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/users">
+                  <FaUsers></FaUsers>
+                  All Users
                 </NavLink>
               </li>
             </>
