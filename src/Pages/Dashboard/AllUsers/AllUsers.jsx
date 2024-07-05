@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
@@ -28,7 +28,7 @@ const AllUsers = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/user/${user._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
-            refetch()
+            refetch();
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
@@ -38,7 +38,23 @@ const AllUsers = () => {
         });
       }
     });
-  }
+  };
+
+  const handleMakeAdmin = (user) => {
+    axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `{user.name} in an Admin now!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
   return (
     <div>
       <div className="flex justify-evenly my-4">
@@ -54,7 +70,7 @@ const AllUsers = () => {
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Roll</th>
+                <th>Role</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -65,21 +81,25 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                  <button
-                  onClick={() => handleMakeAdmin(user)}
-                  className="btn btn-lg bg-orange-500 xl"
-                >
-                  <FaUsers></FaUsers>
-                </button>
+                    {user.role === 'admin' ? (
+                      "Admin"
+                    ) : (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="btn btn-lg bg-orange-500 xl"
+                      >
+                        <FaUsers></FaUsers>
+                      </button>
+                    )}
                   </td>
                   <td>
-                  <button
-                  onClick={() => handleDelete(user)}
-                  className="btn btn-ghost btn-lg text-red-600 xl"
-                >
-                  <FaTrashAlt></FaTrashAlt>
-                </button>
-                    </td>
+                    <button
+                      onClick={() => handleDelete(user)}
+                      className="btn btn-ghost btn-lg text-red-600 xl"
+                    >
+                      <FaTrashAlt></FaTrashAlt>
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
