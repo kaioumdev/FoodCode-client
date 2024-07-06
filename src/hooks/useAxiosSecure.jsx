@@ -18,6 +18,18 @@ const useAxiosSecure = () => {
       return Promise.reject(error);
     }
   );
+
+  //intercepts 401 & 403 status
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    (error) => {
+      const status = error.response.status;
+      console.log("Status error in the interceptors response", status);
+      return Promise.reject(error);
+    }
+  );
   return axiosSecure;
 };
 
