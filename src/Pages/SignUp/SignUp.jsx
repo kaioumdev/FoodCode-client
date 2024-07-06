@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
-  const axsisPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -28,7 +28,7 @@ const SignUp = () => {
           email: data.email,
           photoURL: data.photoURL,
         };
-        axsisPublic.post("/users", userInfo).then((res) => {
+        axiosPublic.post("/users", userInfo).then((res) => {
           if (res.data.insertedId) {
             console.log(res.data);
             reset();
@@ -158,6 +158,14 @@ const SignUp = () => {
                 ></input>
               </div>
             </form>
+            <div>
+            <p className="text-center">
+              Already have an account?{" "}
+              <Link to="/login" className="link link-hover">
+                LogIn
+              </Link>
+            </p>
+          </div>
             <div className="divider"></div>
             <SocialLogin></SocialLogin>
           </div>
