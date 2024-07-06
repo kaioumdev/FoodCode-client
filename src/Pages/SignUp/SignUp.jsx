@@ -159,13 +159,13 @@ const SignUp = () => {
               </div>
             </form>
             <div>
-            <p className="text-center">
-              Already have an account?{" "}
-              <Link to="/login" className="link link-hover">
-                LogIn
-              </Link>
-            </p>
-          </div>
+              <p className="text-center">
+                Already have an account?{" "}
+                <Link to="/login" className="link link-hover">
+                  LogIn
+                </Link>
+              </p>
+            </div>
             <div className="divider"></div>
             <SocialLogin></SocialLogin>
           </div>

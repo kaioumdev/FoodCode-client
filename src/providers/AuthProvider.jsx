@@ -52,6 +52,7 @@ const AuthProvider = ({children}) => {
         })
       }else{
         //remove token and store client side
+        localStorage.removeItem('access-token');
       }
       setLoading(false)
     })
