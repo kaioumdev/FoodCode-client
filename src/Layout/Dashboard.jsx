@@ -1,20 +1,18 @@
 import React from "react";
 import {
   FaBook,
-  FaCalendar,
   FaEnvelope,
   FaHome,
   FaList,
-  FaShoppingCart,
   FaUsers,
   FaUtensils,
 } from "react-icons/fa";
-import { MdReviews } from "react-icons/md";
 import { TiThMenuOutline } from "react-icons/ti";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-orange-400">
