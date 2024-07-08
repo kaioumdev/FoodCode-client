@@ -61,6 +61,7 @@ export const router = createBrowserRouter([
         {
           path: "addItems",
           element:<AdminRoute><AddItems></AddItems></AdminRoute>
+          // element: <AddItems />,
         },
         {
           path: "users",
