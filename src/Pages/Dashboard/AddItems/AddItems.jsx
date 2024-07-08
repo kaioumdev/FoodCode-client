@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { FaUtensils } from "react-icons/fa";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+
 const AddItems = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => console.log(data);
