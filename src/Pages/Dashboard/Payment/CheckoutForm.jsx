@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useCart from "../../../hooks/useCart";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
   const axiosSecure = useAxiosSecure();
@@ -11,7 +12,7 @@ const CheckoutForm = () => {
   const [error, setError] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const { user } = useAuth();
   const totalPrice = cart.reduce(
     (prevItem, currItem) => prevItem + currItem.price,
@@ -19,12 +20,14 @@ const CheckoutForm = () => {
   );
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", { price: totalPrice })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", { price: totalPrice })
+        .then((res) => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -76,13 +79,24 @@ const CheckoutForm = () => {
           price: totalPrice,
           transactionId: paymentIntent.id,
           date: new Date(), //utc date convert, use momentjs to convert
-          cartIds: cart.map(item => item._id),
-          menuItemIds: cart.map(item => item.menuId),
-          status: "pending"
-        }
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuId),
+          status: "pending",
+        };
 
         const res = await axiosSecure.post("/payments", payment);
-        console.log('payment save', res);
+        console.log("payment save", res);
+        refetch();
+        if(res?.data?.paymentResult?.insertedId){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Payment successful!",
+            text: "Your order has been placed.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       }
     }
   };
