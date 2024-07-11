@@ -12,6 +12,7 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [cart] = useCart()
   const {user} = useAuth();
+  console.log(user);
   const totalPrice = cart.reduce((prevItem, currItem) => prevItem + currItem.price, 0);
 
   useEffect(() => {
@@ -45,6 +46,22 @@ const CheckoutForm = () => {
       console.log("PaymentMethod Method", paymentMethod);
     }
 
+    //confirm the payment
+    const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card:card,
+        billing_details: {
+          name: user?.displayName || "anonymous",
+          email: user?.email || "anonymous",
+        }
+      }
+    })
+
+    if(confirmError){
+      console.log("confirm payment error", confirmError);
+    }else{
+      console.log("Payment confirmed", paymentIntent)
+    }
 
   };
   return (
