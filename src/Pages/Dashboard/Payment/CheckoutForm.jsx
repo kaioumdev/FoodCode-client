@@ -45,22 +45,7 @@ const CheckoutForm = () => {
       console.log("PaymentMethod Method", paymentMethod);
     }
 
-    //confirm the payment
-    const {paymentIntent, error:confirmError} = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: user?.name || "anonymous",
-          email: user?.displayName || "anonymous",
-        }
-      }
-    })
 
-    if(confirmError){
-      console.log('confirmError', confirmError)
-    }else{
-      console.log('payment intent', paymentIntent)
-    }
   };
   return (
     <form onSubmit={handleSubmit}>
