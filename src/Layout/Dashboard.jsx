@@ -38,6 +38,12 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaBook></FaBook>
+                  Payment History
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/bookings">
                   <FaBook></FaBook>
                   Manage Bookings
