@@ -135,12 +135,12 @@ const Navbar = () => {
 
       {user && !isAdmin && (
         <li className="flex items-center justify-center">
-          <Link to="/dashboard/userHome">User Home</Link>
+          <Link to="/dashboard/userHome">Dashboard</Link>
         </li>
       )}
       {user && isAdmin && (
         <li className="flex items-center justify-center">
-          <Link to="/dashboard/adminHomme">Admin Home</Link>
+          <Link to="/dashboard/adminHomme">Dashboard</Link>
         </li>
       )}
       {user ? (

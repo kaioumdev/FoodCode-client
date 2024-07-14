@@ -16,7 +16,7 @@ const Login = () => {
   let navigate = useNavigate();
 
   let from = location?.state?.from?.pathname || "/";
-  // console.log('state in the location login page', location.state);
+  console.log('state in the location login page', location.state);
 
   // const captchaRef = useRef(null);
   const { signIn } = useContext(AuthContext);
@@ -30,7 +30,6 @@ const Login = () => {
     const password = form.password.value;
     signIn(email, password).then((result) => {
       const user = result.user;
-      // console.log(user);
       Swal.fire({
         title: "User login successful",
         showClass: {
