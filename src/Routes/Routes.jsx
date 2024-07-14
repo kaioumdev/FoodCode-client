@@ -82,7 +82,7 @@ export const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory></PaymentHistory>
       },
-      //admin routes
+      // admin routes
       {
         path: "adminHome",
         element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
