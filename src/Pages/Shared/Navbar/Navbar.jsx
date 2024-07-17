@@ -140,7 +140,7 @@ const Navbar = () => {
       )}
       {user && isAdmin && (
         <li className="flex items-center justify-center">
-          <Link to="/dashboard/adminHomme">Dashboard</Link>
+          <Link to="/dashboard/adminHome">Dashboard</Link>
         </li>
       )}
       {user ? (
