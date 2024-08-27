@@ -17,6 +17,7 @@ const AdminHome = () => {
     <div>
       <h2 className="text-3xl">
         <spna>Hi, Welcome</spna>
+        {" "}
         {user?.displayName ? user.displayName : "Back"}
       </h2>
       <div className="stats shadow">
