@@ -14,9 +14,9 @@ const SocialLogin = () => {
         console.log(result.user);
         // updateUserProfile(result.user.displayName, result.user.photoURL);
         const userInfo = {
-          name: result.user.displayName,
-          email: result.user.email,
-          photoURL: result.user.photoURL,
+          name: result.user?.displayName,
+          email: result.user?.email,
+          photoURL: result.user?.photoURL,
         }
         axiosPublic.post("/users", userInfo)
         .then(res => {
