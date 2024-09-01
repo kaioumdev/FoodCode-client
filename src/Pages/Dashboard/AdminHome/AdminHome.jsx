@@ -35,7 +35,7 @@ const AdminHome = () => {
             <FaUsers className="text-3xl"></FaUsers>
           </div>
           <div className="stat-title">Users</div>
-          <div className="stat-value">{stats.users}</div>
+          <div className="stat-value">{stats?.users}</div>
           <div className="stat-desc">↗︎ 400 (22%)</div>
         </div>
 
@@ -44,7 +44,7 @@ const AdminHome = () => {
             <FaBook className="text-3xl"></FaBook>
           </div>
           <div className="stat-title">Menu Items</div>
-          <div className="stat-value">{stats.menuItems}</div>
+          <div className="stat-value">{stats?.menuItems}</div>
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
         <div className="stat">
