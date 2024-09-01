@@ -20,7 +20,7 @@ const AdminHome = () => {
         {" "}
         {user?.displayName ? user.displayName : "Back"}
       </h2>
-      <div className="stats shadow">
+      {/* <div className="stats shadow">
         <div className="stat">
           <div className="stat-figure text-secondary">
             <FaDollarSign className="text-3xl"></FaDollarSign>
@@ -55,7 +55,7 @@ const AdminHome = () => {
           <div className="stat-value">{stats.orders}</div>
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
