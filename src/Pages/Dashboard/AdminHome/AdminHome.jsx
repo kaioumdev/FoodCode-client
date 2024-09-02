@@ -6,13 +6,14 @@ import { FaBook, FaDollarSign, FaUsers } from "react-icons/fa";
 const AdminHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: stats } = useQuery({
+  const { data: stats = [] } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
       return res.data;
     },
   });
+  console.log(stats)
   return (
     <div>
       <h2 className="text-3xl">
@@ -52,7 +53,7 @@ const AdminHome = () => {
             <FaBook className="text-3xl"></FaBook>
           </div>
           <div className="stat-title">Orders</div>
-          <div className="stat-value">{stats.orders}</div>
+          <div className="stat-value">{stats?.orders}</div>
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
