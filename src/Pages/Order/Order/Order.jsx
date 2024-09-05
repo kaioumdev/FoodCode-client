@@ -14,7 +14,7 @@ const Order = () => {
   const initialIndex = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState(initialIndex);
   const [menu] = useMenu();
-  console.log(tabIndex)
+  console.log(tabIndex);
   const desserts = menu.filter((item) => item.category === "dessert");
   const salads = menu.filter((item) => item.category === "salad");
   const pizzas = menu.filter((item) => item.category === "pizza");
@@ -22,9 +22,9 @@ const Order = () => {
   const soups = menu.filter((item) => item.category === "soup");
   return (
     <div>
-             <Helmet>
-            <title>Bistro Boss | Order</title>
-        </Helmet>
+      <Helmet>
+        <title>Bistro Boss | Order</title>
+      </Helmet>
       <Cover img={shopImg} title="Order Shop"></Cover>
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
         <TabList>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -12,11 +12,11 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const location = useLocation()
+  const location = useLocation();
   let navigate = useNavigate();
 
   let from = location?.state?.from?.pathname || "/";
-  console.log('state in the location login page', location.state);
+  console.log("state in the location login page", location.state);
 
   // const captchaRef = useRef(null);
   const { signIn } = useContext(AuthContext);
@@ -37,15 +37,15 @@ const Login = () => {
             animate__animated
             animate__fadeInUp
             animate__faster
-          `
+          `,
         },
         hideClass: {
           popup: `
             animate__animated
             animate__fadeOutDown
             animate__faster
-          `
-        }
+          `,
+        },
       });
       navigate(from, { replace: true });
     });
@@ -61,9 +61,9 @@ const Login = () => {
   };
   return (
     <>
-    <Helmet>
-      <title>Bistro Boss | Login</title>
-    </Helmet>
+      <Helmet>
+        <title>Bistro Boss | Login</title>
+      </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -141,8 +141,8 @@ const Login = () => {
                 </Link>
               </small>
             </p>
-          <div className="divider"></div>
-          <SocialLogin></SocialLogin>
+            <div className="divider"></div>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

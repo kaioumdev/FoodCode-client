@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 import Cover from "../../Shared/Cover/Cover";
 import { Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -18,8 +18,7 @@ const SignUp = () => {
   } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    createUser(data.email, data.password)
-    .then((result) => {
+    createUser(data.email, data.password).then((result) => {
       const logedInuser = result.user;
       console.log(logedInuser);
       updateUserProfile(data.name, data.photoURL).then(() => {

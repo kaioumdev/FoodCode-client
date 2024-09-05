@@ -1,4 +1,3 @@
-import React from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import featuredImg from "../../../assets/home/featured.jpg";
 import "./Featured.css";
@@ -24,10 +23,12 @@ const Featured = () => {
             quibusdam tenetur dolores nesciunt, animi ipsum. Consectetur, a
             totam! Labore autem exercitationem maxime aliquam sapiente magnam.
           </p>
-          <button className="btn btn-outline border-0 border-b-4 mt-4">Order Now</button>
+          <button className="btn btn-outline border-0 border-b-4 mt-4">
+            Order Now
+          </button>
         </div>
       </div>
-    </section> 
+    </section>
   );
 };
 
