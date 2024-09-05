@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, useEffect, useState } from "react";
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -21,6 +23,7 @@ const AuthProvider = ({ children }) => {
   const axiosPublic = useAxiosPublic();
 
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -49,6 +52,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+
+  const signInWithGithub = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
+
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -83,6 +92,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserProfile,
     signInWithGoogle,
+    signInWithGithub,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
