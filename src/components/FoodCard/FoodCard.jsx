@@ -7,7 +7,6 @@ import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
-  console.log(_id);
   const { user } = useAuth();
   const [, refetch] = useCart();
   const navigate = useNavigate();
@@ -17,7 +16,6 @@ const FoodCard = ({ item }) => {
   const handleAddToCart = () => {
     if (user && user.email) {
       // TODO: send cart item to the database
-      console.log(user.email);
       const cartItem = {
         menuId: _id,
         email: user?.email,
@@ -27,7 +25,6 @@ const FoodCard = ({ item }) => {
       };
 
       axiosSecure.post("/carts", cartItem).then((res) => {
-        console.log(res.data);
         if (res.data.insertedId) {
           Swal.fire({
             position: "top-end",
@@ -53,7 +50,6 @@ const FoodCard = ({ item }) => {
         if (result.isConfirmed) {
           //send user to the login page
           navigate("/login", { state: { from: location } });
-          // <Navigate to='/login' state={{ from: location }} replace></Navigate>
         }
       });
     }
