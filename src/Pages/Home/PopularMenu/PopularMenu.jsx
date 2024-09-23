@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 import useMenu from "../../../hooks/useMenu";
 
 const PopularMenu = () => {
-  const [menu] = useMenu()
+  const [menu] = useMenu();
   const popular = menu.filter((item) => item.category === "popular");
   return (
     <section>
