@@ -13,7 +13,6 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-// import { GoogleAuthProvider } from 'firebase/auth/web-extension';
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
