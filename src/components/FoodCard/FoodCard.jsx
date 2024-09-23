@@ -7,19 +7,20 @@ import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
   const { name, image, price, recipe, _id } = item;
+  console.log(_id);
   const { user } = useAuth();
   const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
 
-  const handleAddToCart = (food) => {
+  const handleAddToCart = () => {
     if (user && user.email) {
       // TODO: send cart item to the database
-      console.log(user.email, food);
+      console.log(user.email);
       const cartItem = {
         menuId: _id,
-        email: user.email,
+        email: user?.email,
         name,
         image,
         price,
@@ -70,7 +71,7 @@ const FoodCard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions justify-end">
           <button
-            onClick={() => handleAddToCart(item)}
+            onClick={() => handleAddToCart()}
             className="btn btn-outline bg-slate-100 border-orange-400 border-0 border-b-4 mt-4"
           >
             Add to Cart
