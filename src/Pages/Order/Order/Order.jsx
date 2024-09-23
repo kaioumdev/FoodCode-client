@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import shopImg from "../../../assets/shop/banner2.jpg";
 import Cover from "../../Shared/Cover/Cover";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
