@@ -1,4 +1,3 @@
-import React from "react";
 import useCart from "../../../hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -23,7 +22,6 @@ const Cart = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-      console.log(result);
       if (result.isConfirmed) {
         axiosSecure.delete(`/carts/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
