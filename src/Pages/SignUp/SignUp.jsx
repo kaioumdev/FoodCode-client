@@ -22,7 +22,6 @@ const SignUp = () => {
       const logedInuser = result.user;
       console.log(logedInuser);
       updateUserProfile(data.name, data.photoURL).then(() => {
-        console.log("User profile updated successfully");
         const userInfo = {
           name: data.name,
           email: data.email,
@@ -30,7 +29,6 @@ const SignUp = () => {
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           if (res.data.insertedId) {
-            console.log(res.data);
             reset();
             Swal.fire({
               position: "top-end",

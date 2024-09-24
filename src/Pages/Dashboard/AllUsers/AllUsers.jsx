@@ -117,8 +117,6 @@
 
 // export default AllUsers;
 
-
-import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUsers } from "react-icons/fa";
@@ -126,7 +124,7 @@ import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  
+
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -200,7 +198,7 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    {user.role === 'admin' ? (
+                    {user.role === "admin" ? (
                       "Admin"
                     ) : (
                       <button
