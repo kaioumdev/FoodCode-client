@@ -10,15 +10,11 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-  const updateItem = useLoaderData();
-  console.log(updateItem);
   const { name, category, price, recipe, image, _id } = useLoaderData();
-  // console.log(item);
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async (data) => {
-    console.log(data);
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -33,7 +29,6 @@ const UpdateItem = () => {
         image: res.data.data.display_url,
       };
       const menuRes = await axiosSecure.patch(`menu/${_id}`, menuItem);
-      console.log(menuRes.data);
       reset();
       if (menuRes.data.modifiedCount > 0) {
         Swal.fire({
@@ -45,7 +40,6 @@ const UpdateItem = () => {
         });
       }
     }
-    console.log("with img url", res.data);
   };
 
   return (
