@@ -69,7 +69,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "userHome",
-        element: <UserHome></UserHome>
+        element: <UserHome></UserHome>,
       },
       {
         path: "cart",
@@ -77,16 +77,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "payment",
-        element: <Payment></Payment>
+        element: <Payment></Payment>,
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>
+        element: <PaymentHistory></PaymentHistory>,
       },
       // admin routes
       {
         path: "adminHome",
-        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "addItems",
@@ -107,8 +111,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "updateItem/:id",
-        element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+        element: (
+          <AdminRoute>
+            <UpdateItem></UpdateItem>
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
       },
       {
         path: "users",

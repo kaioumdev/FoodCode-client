@@ -7,21 +7,23 @@ import { useForm } from "react-hook-form";
 import { FaUtensils } from "react-icons/fa";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
-  const {name, category, price, recipe, image, _id} = useLoaderData();
+  const updateItem = useLoaderData();
+  console.log(updateItem);
+  const { name, category, price, recipe, image, _id } = useLoaderData();
   // console.log(item);
   const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const onSubmit = async(data) => {
-    console.log(data)
-    const imageFile = {image: data.image[0]}
+  const onSubmit = async (data) => {
+    console.log(data);
+    const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
-    if(res.data.success){
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    if (res.data.success) {
       //now send the menu item data to the server with the image url
       const menuItem = {
         name: data.name,
@@ -29,11 +31,11 @@ const UpdateItem = () => {
         price: data.price,
         recipe: data.recipe,
         image: res.data.data.display_url,
-      }
-      const menuRes = await axiosSecure.patch(`menu/${_id}`, menuItem)
-      console.log(menuRes.data)
-      reset()
-      if(menuRes.data.modifiedCount > 0){
+      };
+      const menuRes = await axiosSecure.patch(`menu/${_id}`, menuItem);
+      console.log(menuRes.data);
+      reset();
+      if (menuRes.data.modifiedCount > 0) {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -43,7 +45,7 @@ const UpdateItem = () => {
         });
       }
     }
-    console.log('with img url', res.data)
+    console.log("with img url", res.data);
   };
 
   return (
@@ -55,7 +57,7 @@ const UpdateItem = () => {
             <span className="label-text">Recipe Name</span>
           </div>
           <input
-            {...register("name", {required: true})}
+            {...register("name", { required: true })}
             required
             type="text"
             defaultValue={name}
@@ -68,8 +70,9 @@ const UpdateItem = () => {
             <div className="label">
               <span className="label-text">Category</span>
             </div>
-            <select defaultValue={category}
-              {...register("category", {required: true})}
+            <select
+              defaultValue={category}
+              {...register("category", { required: true })}
               className="select select-bordered w-full"
             >
               <option disabled value="default">
@@ -87,7 +90,7 @@ const UpdateItem = () => {
               <span className="label-text">Receipe Price</span>
             </div>
             <input
-              {...register("price", {required: true})}
+              {...register("price", { required: true })}
               defaultValue={price}
               type="text"
               placeholder="Price Name"
@@ -101,7 +104,7 @@ const UpdateItem = () => {
               <span className="label-text">Recipe Details</span>
             </div>
             <textarea
-            defaultValue={recipe}
+              defaultValue={recipe}
               {...register("recipe")}
               className="textarea textarea-bordered h-24"
               placeholder="Bio"
@@ -110,7 +113,8 @@ const UpdateItem = () => {
         </div>
         <div className="my-4">
           <input
-            {...register("image", {required: true})}
+            defaultValue={image}
+            {...register("image", { required: true })}
             type="file"
             className="file-input w-full max-w-xs"
           />
