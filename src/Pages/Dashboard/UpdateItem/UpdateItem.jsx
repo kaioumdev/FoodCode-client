@@ -107,7 +107,7 @@ const UpdateItem = () => {
         </div>
         <div className="my-4">
           <input
-            defaultValue={image}
+            // defaultValue={image}
             {...register("image", { required: true })}
             type="file"
             className="file-input w-full max-w-xs"
