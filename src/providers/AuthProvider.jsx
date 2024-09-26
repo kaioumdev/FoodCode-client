@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        //get token and store client side
+        //get token and store client side to secure access user at calling useAxiosSecure
         const userInfo = { email: currentUser.email };
         axiosPublic.post("/auth/jwt", userInfo).then((res) => {
           if (res.data.token) {
