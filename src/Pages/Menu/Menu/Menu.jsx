@@ -9,6 +9,7 @@ import pizzaImg from "../../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../../assets/menu/salad-bg.jpg";
 import soupImg from "../../../assets/menu/soup-bg.jpg";
 
+//menu routes
 const Menu = () => {
   const [menu] = useMenu();
   const desserts = menu.filter((item) => item.category === "dessert");
