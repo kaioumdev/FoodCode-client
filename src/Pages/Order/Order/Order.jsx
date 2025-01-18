@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const Order = () => {
-  const categories = ["salads", "pizzas", "soups", "desserts", "drinks"];
+  const categories = ["salads", "pizzas", "soups", "desserts", "drinks", "offered"];
   const { category } = useParams();
   console.log(category)
   const initialIndex = categories.indexOf(category);
@@ -20,6 +20,7 @@ const Order = () => {
   const pizzas = menu.filter((item) => item.category === "pizza");
   const drinks = menu.filter((item) => item.category === "drinks");
   const soups = menu.filter((item) => item.category === "soup");
+  const offered = menu.filter((item) => item.category === "offered");
   return (
     <div>
       <Helmet>
@@ -33,6 +34,7 @@ const Order = () => {
           <Tab>Soup</Tab>
           <Tab>Dessert</Tab>
           <Tab>Drinks</Tab>
+          <Tab>Offered</Tab>
         </TabList>
         <TabPanel>
           <OrderTab items={salads}></OrderTab>
@@ -48,6 +50,9 @@ const Order = () => {
         </TabPanel>
         <TabPanel>
           <OrderTab items={drinks}></OrderTab>
+        </TabPanel>
+        <TabPanel>
+          <OrderTab items={offered}></OrderTab>
         </TabPanel>
       </Tabs>
     </div>

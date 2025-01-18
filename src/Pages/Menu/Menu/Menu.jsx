@@ -29,7 +29,7 @@ const Menu = () => {
         subHeading="Don't Miss"
         heading="Today's Offer"
       ></SectionTitle>
-      <MenuCategory items={offered}></MenuCategory>
+      <MenuCategory items={offered} title="offered"></MenuCategory>
       <MenuCategory
         title="desserts"
         items={desserts}
