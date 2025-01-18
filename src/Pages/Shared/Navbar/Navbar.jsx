@@ -106,7 +106,7 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut()
-      .then(() => {})
+      .then(() => { })
       .catch((error) => console.log(error));
   };
 
@@ -151,9 +151,9 @@ const Navbar = () => {
         </li>
       ) : (
         <li className="flex items-center justify-center">
-         <button>
-         <Link to="/login">Login</Link>
-         </button>
+          <button>
+            <Link to="/login">Login</Link>
+          </button>
         </li>
       )}
     </>
@@ -187,7 +187,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl flex items-center justify-center">
-          Bistro Boss
+          FoodCode
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
