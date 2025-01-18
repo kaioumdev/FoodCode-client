@@ -12,6 +12,7 @@ import soupImg from "../../../assets/menu/soup-bg.jpg";
 //menu routes
 const Menu = () => {
   const [menu] = useMenu();
+  console.log(menu);
   const desserts = menu.filter((item) => item.category === "dessert");
   const salads = menu.filter((item) => item.category === "salad");
   const pizzas = menu.filter((item) => item.category === "pizza");
@@ -21,7 +22,7 @@ const Menu = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Menu</title>
+        <title>FoodCode | Menu</title>
       </Helmet>
       <Cover img={menuImg} title="Our Menu"></Cover>
       <SectionTitle
