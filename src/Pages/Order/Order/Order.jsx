@@ -27,14 +27,16 @@ const Order = () => {
       </Helmet>
       <Cover img={shopImg} title="Order Shop"></Cover>
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-        <TabList>
-          <Tab>Salad</Tab>
-          <Tab>Pizza</Tab>
-          <Tab>Soup</Tab>
-          <Tab>Dessert</Tab>
-          <Tab>Drinks</Tab>
-          <Tab>Offered</Tab>
-        </TabList>
+        <div className="text-center">
+          <TabList>
+            <Tab>Salad</Tab>
+            <Tab>Pizza</Tab>
+            <Tab>Soup</Tab>
+            <Tab>Dessert</Tab>
+            <Tab>Drinks</Tab>
+            <Tab>Offered</Tab>
+          </TabList>
+        </div>
         <TabPanel>
           <OrderTab items={salads}></OrderTab>
         </TabPanel>
