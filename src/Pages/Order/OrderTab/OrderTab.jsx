@@ -11,13 +11,13 @@ const OrderTab = ({ items }) => {
   const endIndex = startIndex + itemsPerPage;
   const currentItems = items.slice(startIndex, endIndex);
 
-  // // Calculate the total number of pages
-  // const totalPages = Math.ceil(items.length / itemsPerPage);
+  // Calculate the total number of pages
+  const totalPages = Math.ceil(items.length / itemsPerPage);
 
-  // // Handle page button clicks
-  // const handlePageClick = (pageIndex) => {
-  //   setCurrentPage(pageIndex);
-  // };
+  // Handle page button clicks
+  const handlePageClick = (pageIndex) => {
+    setCurrentPage(pageIndex);
+  };
 
   return (
     <div>
