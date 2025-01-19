@@ -6,10 +6,10 @@ const OrderTab = ({ items }) => {
   const [currentPage, setCurrentPage] = useState(0); // State for the current page
   const itemsPerPage = 6; // Number of items to display per page
 
-  // // Calculate the items to display for the current page
-  // const startIndex = currentPage * itemsPerPage;
-  // const endIndex = startIndex + itemsPerPage;
-  // const currentItems = items.slice(startIndex, endIndex);
+  // Calculate the items to display for the current page
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = items.slice(startIndex, endIndex);
 
   // // Calculate the total number of pages
   // const totalPages = Math.ceil(items.length / itemsPerPage);
