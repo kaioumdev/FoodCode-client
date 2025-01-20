@@ -20,7 +20,6 @@ const SignUp = () => {
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
       const logedInuser = result.user;
-      // console.log(logedInuser);
       updateUserProfile(data.name, data.photoURL).then(() => {
         const userInfo = {
           name: data.name,
