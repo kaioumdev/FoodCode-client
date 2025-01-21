@@ -132,10 +132,7 @@ const SignUp = () => {
                 )}
                 {errors.password?.type === "maxLength" && (
                   <p className="text-red-600">
-                    At least one lowercase letter.
-                    At least one uppercase letter.
-                    At least one digit.
-                    A minimum length of 6 characters.
+                    A maximum length of 6 characters.
                   </p>
                 )}
                 {errors.password?.type === "pattern" && (
