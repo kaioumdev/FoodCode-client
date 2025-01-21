@@ -18,6 +18,7 @@ const SignUp = () => {
   } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) => {
+    console.log(data);
     createUser(data.email, data.password).then((result) => {
       const logedInuser = result.user;
       updateUserProfile(data.name, data.photoURL).then(() => {
@@ -133,7 +134,10 @@ const SignUp = () => {
                 )}
                 {errors.password?.type === "maxLength" && (
                   <p className="text-red-600">
-                    Password must be less than 20 characters
+                    At least one lowercase letter.
+                    At least one uppercase letter.
+                    At least one digit.
+                    A minimum length of 6 characters.
                   </p>
                 )}
                 {errors.password?.type === "pattern" && (
