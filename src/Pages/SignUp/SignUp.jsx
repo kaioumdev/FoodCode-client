@@ -27,7 +27,6 @@ const SignUp = () => {
           photoURL: data.photoURL,
         };
         axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res);
           if (res.data.insertedId) {
             reset();
             Swal.fire({
@@ -42,7 +41,6 @@ const SignUp = () => {
         });
       });
     });
-    console.log(data);
   };
   return (
     <>
