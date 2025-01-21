@@ -18,7 +18,6 @@ const SignUp = () => {
   } = useForm();
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password).then((result) => {
       const logedInuser = result.user;
       updateUserProfile(data.name, data.photoURL).then(() => {
