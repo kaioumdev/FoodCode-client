@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Login</title>
+        <title>FoodCode | Login</title>
       </Helmet>
       <div className="hero bg-base-200 min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
@@ -115,7 +115,7 @@ const Login = () => {
                   // ref={captchaRef}
                   placeholder="Type the captcha above"
                   className="input input-bordered"
-                  // required
+                // required
                 />
                 {/* <button
                   className="btn btn-outline btn-xm mt-2"
