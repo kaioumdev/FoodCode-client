@@ -24,7 +24,7 @@ const CheckoutForm = () => {
   useEffect(() => {
     if (totalPrice > 0) {
       axiosSecure
-        .post("/create-payment-intent", { price: totalPrice })
+        .post("/payments/create-payment-intent", { price: totalPrice })
         .then((res) => {
           console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
@@ -89,7 +89,7 @@ const CheckoutForm = () => {
         const res = await axiosSecure.post("/payments", payment);
         console.log("payment save", res);
         refetch();
-        if(res?.data?.paymentResult?.insertedId){
+        if (res?.data?.paymentResult?.insertedId) {
           Swal.fire({
             position: "top-end",
             icon: "success",
