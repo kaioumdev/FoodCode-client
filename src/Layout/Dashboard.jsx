@@ -289,7 +289,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/order/salad">
+            <NavLink to="/order/salads">
               <FaSearch></FaSearch>
               Menu
             </NavLink>
