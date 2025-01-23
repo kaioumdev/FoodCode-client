@@ -26,7 +26,6 @@ const CheckoutForm = () => {
       axiosSecure
         .post("/payments/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
