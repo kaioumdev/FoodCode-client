@@ -126,6 +126,7 @@ const Login = () => {
               <div className="form-control mt-6">
                 {/* apply disabled for re captcha*/}
                 <input
+                  // disabled={disabled}
                   disabled={false}
                   type="submit"
                   value="login"
