@@ -137,7 +137,7 @@ const SignUp = () => {
                 )}
                 {errors.password?.type === "pattern" && (
                   <p className="text-red-600">
-                    Password must be alphanumeric characters
+                    Password must have one uppercase one lowercase, one number and one special character
                   </p>
                 )}
                 <label className="label">
