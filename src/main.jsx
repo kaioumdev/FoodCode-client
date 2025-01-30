@@ -16,16 +16,16 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
-    <div className="max-w-screen-xl mx-auto">
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <HelmetProvider>
-            <RouterProvider router={router}>
-              <App />
-            </RouterProvider>
-          </HelmetProvider>
-        </QueryClientProvider>
-      </AuthProvider>
-    </div>
+  <div className="max-w-screen-xl mx-auto">
+    <AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <RouterProvider router={router}>
+            <App />
+          </RouterProvider>
+        </HelmetProvider>
+      </QueryClientProvider>
+    </AuthProvider>
+  </div>
   // </React.StrictMode>
 );
