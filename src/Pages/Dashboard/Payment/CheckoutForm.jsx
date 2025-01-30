@@ -14,6 +14,7 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [cart, refetch] = useCart();
+  console.log(cart)
   const { user } = useAuth();
   const navigate = useNavigate();
   const totalPrice = cart.reduce(
