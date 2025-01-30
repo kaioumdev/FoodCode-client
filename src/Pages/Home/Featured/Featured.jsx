@@ -14,7 +14,7 @@ const Featured = () => {
           <img src={featuredImg} alt="" />
         </div>
         <div className="md:ml-10">
-          <p>Jun 27, 2024</p>
+          <p>Jan 26, 2025</p>
           <p className="uppercase">Where can we get some?</p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
