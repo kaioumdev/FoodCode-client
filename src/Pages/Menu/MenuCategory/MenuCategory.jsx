@@ -20,14 +20,14 @@ const MenuCategory = ({ items, title, img }) => {
       </div>
       <div className="flex justify-center items-center gap-5">
         {/* Show "See More" button only if there are more than 6 items and not all are shown */}
-        {/* {items.length > 6 && !showAll && (
+        {items.length > 6 && !showAll && (
           <button
             className="btn btn-outline my-4"
             onClick={() => setShowAll(true)}
           >
             See More
           </button>
-        )} */}
+        )}
         {/* Always show the "Order" button */}
         <Link to={`/order/${title}`}>
           <button className="btn btn-outline">Order</button>
