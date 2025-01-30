@@ -33,7 +33,7 @@ const useAxiosSecure = () => {
       // console.log("Status error in the interceptors response", status);
       if (status === 401 || status === 403) {
         await logOut();
-        navigate("/login");
+        navigate("/");
       }
       return Promise.reject(error);
     }
