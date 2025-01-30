@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import * as React from "react";
-import * as ReactDOM from "react-dom/client";
+// import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
