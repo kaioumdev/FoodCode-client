@@ -103,42 +103,6 @@ const CheckoutForm = () => {
     }
   };
   return (
-    // <div className="flex justify-center items-center min-h-screen bg-gray-100">
-    //   <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md">
-    //     <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-    //       Payment Details
-    //     </h2>
-    //     <form onSubmit={handleSubmit} className="space-y-4">
-    //       <div className="border p-4 rounded-lg shadow-sm bg-gray-50">
-    //         <CardElement
-    //           options={{
-    //             style: {
-    //               base: {
-    //                 fontSize: "16px",
-    //                 color: "#424770",
-    //                 "::placeholder": { color: "#aab7c4" },
-    //               },
-    //               invalid: { color: "#9e2146" },
-    //             },
-    //           }}
-    //         />
-    //       </div>
-    //       <button
-    //         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:bg-gray-400"
-    //         type="submit"
-    //         disabled={!stripe}
-    //       >
-    //         Pay
-    //       </button>
-    //       <p className="text-red-500 text-sm text-center">{error}</p>
-    //       {transactionId && (
-    //         <p className="text-green-500 text-sm text-center">
-    //           Your transactionId: {transactionId}
-    //         </p>
-    //       )}
-    //     </form>
-    //   </div>
-    // </div>
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-all hover:shadow-3xl">
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6 relative">
