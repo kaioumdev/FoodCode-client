@@ -295,7 +295,7 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/order/contact">
+            <NavLink to="/contact-us">
               <FaEnvelope></FaEnvelope>
               Contact
             </NavLink>
