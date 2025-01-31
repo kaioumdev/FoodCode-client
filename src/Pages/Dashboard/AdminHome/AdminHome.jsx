@@ -13,6 +13,15 @@ const AdminHome = () => {
       return res.data;
     },
   });
+
+  const { data: chartData = [] } = useQuery({
+    queryKey: ["order-stats"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/order-stats");
+      return res.data;
+    },
+  });
+
   return (
     <div>
       <h2 className="text-3xl">
