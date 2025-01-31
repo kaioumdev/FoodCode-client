@@ -21,6 +21,7 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../Pages/Dashboard/UserHome/UserHome";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>
       },
       {
         path: "menu",
