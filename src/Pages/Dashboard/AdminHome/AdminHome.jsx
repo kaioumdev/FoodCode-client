@@ -127,7 +127,7 @@ const AdminHome = () => {
           <div className="stat-desc">↘︎ 90 (14%)</div>
         </div>
       </div>
-      <div className="flex my-5">
+      <div className="flex justify-between items-center">
         <div className="w-1/2">
           <BarChart
             width={500}
