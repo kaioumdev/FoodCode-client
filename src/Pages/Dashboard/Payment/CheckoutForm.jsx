@@ -103,40 +103,121 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md">
-        <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-          Payment Details
+    // <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    //   <div className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md">
+    //     <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
+    //       Payment Details
+    //     </h2>
+    //     <form onSubmit={handleSubmit} className="space-y-4">
+    //       <div className="border p-4 rounded-lg shadow-sm bg-gray-50">
+    //         <CardElement
+    //           options={{
+    //             style: {
+    //               base: {
+    //                 fontSize: "16px",
+    //                 color: "#424770",
+    //                 "::placeholder": { color: "#aab7c4" },
+    //               },
+    //               invalid: { color: "#9e2146" },
+    //             },
+    //           }}
+    //         />
+    //       </div>
+    //       <button
+    //         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:bg-gray-400"
+    //         type="submit"
+    //         disabled={!stripe}
+    //       >
+    //         Pay
+    //       </button>
+    //       <p className="text-red-500 text-sm text-center">{error}</p>
+    //       {transactionId && (
+    //         <p className="text-green-500 text-sm text-center">
+    //           Your transactionId: {transactionId}
+    //         </p>
+    //       )}
+    //     </form>
+    //   </div>
+    // </div>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-all hover:shadow-3xl">
+        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6 relative">
+          Secure Payment
+          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-blue-500 rounded-full"></span>
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="border p-4 rounded-lg shadow-sm bg-gray-50">
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="group border-2 border-gray-200 p-5 rounded-xl bg-gradient-to-r from-gray-50 to-white hover:border-blue-300 transition-all focus-within:border-blue-500 focus-within:ring-8 ring-blue-100">
             <CardElement
               options={{
                 style: {
                   base: {
                     fontSize: "16px",
-                    color: "#424770",
-                    "::placeholder": { color: "#aab7c4" },
+                    color: "#1a1a1a",
+                    fontFamily: "'Inter', sans-serif",
+                    "::placeholder": {
+                      color: "#9ca3af",
+                      fontWeight: "400"
+                    },
+                    lineHeight: "1.5",
+                    letterSpacing: "0.025em"
                   },
-                  invalid: { color: "#9e2146" },
+                  invalid: {
+                    color: "#dc2626",
+                    iconColor: "#dc2626"
+                  },
                 },
+                // hidePostalCode: true,
+                classes: {
+                  focus: 'focused'
+                }
               }}
+              className="p-3"
             />
           </div>
+
           <button
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition disabled:bg-gray-400"
+            className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition-transform transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:pointer-events-none"
             type="submit"
             disabled={!stripe}
           >
-            Pay
+            Pay Now
+            <span className="ml-2">→</span>
           </button>
-          <p className="text-red-500 text-sm text-center">{error}</p>
+
+          {error && (
+            <div className="flex items-center p-3 bg-red-50/80 border border-red-100 rounded-lg text-red-600 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              </svg>
+              {error}
+            </div>
+          )}
+
           {transactionId && (
-            <p className="text-green-500 text-sm text-center">
-              Your transactionId: {transactionId}
-            </p>
+            <div className="flex items-center p-3 bg-emerald-50/80 border border-emerald-100 rounded-lg text-emerald-600 text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              Transaction ID: <span className="font-mono ml-2">{transactionId}</span>
+            </div>
           )}
         </form>
+
+        <div className="mt-6 flex justify-center space-x-4">
+          <div className="flex items-center text-gray-400 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 14.414l-4.707-4.707 1.414-1.414L11 13.586l5.293-5.293 1.414 1.414L11 16.414z" />
+            </svg>
+            Secure SSL
+          </div>
+          <div className="flex items-center text-gray-400 text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm3.293 8.707L11 13.586l-2.293-2.293-1.414 1.414L11 16.414l5.707-5.707-1.414-1.414z" />
+            </svg>
+            256-bit Encryption
+          </div>
+        </div>
       </div>
     </div>
   );
