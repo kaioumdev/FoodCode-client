@@ -131,7 +131,6 @@ const CheckoutForm = () => {
                     iconColor: "#dc2626"
                   },
                 },
-                // hidePostalCode: true,
                 classes: {
                   focus: 'focused'
                 }
