@@ -22,6 +22,9 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li className="flex items-center justify-center">
+        <Link to="/contact-us">Contact Us</Link>
+      </li>
+      <li className="flex items-center justify-center">
         <Link to="/menu">Menu</Link>
       </li>
       <li className="flex items-center justify-center">
@@ -30,15 +33,6 @@ const Navbar = () => {
       <li className="flex items-center justify-center">
         <Link to="/signup">SignUp</Link>
       </li>
-      <li className="flex items-center justify-center">
-        <Link to="/dashboard/cart">
-          <button className="btn flex items-center justify-center">
-            <FaShoppingCart />
-            <div className="badge badge-secondary">+{cart?.length}</div>
-          </button>
-        </Link>
-      </li>
-
       {user && !isAdmin && (
         <li className="flex items-center justify-center">
           <Link to="/dashboard/userHome">Dashboard</Link>
@@ -47,19 +41,6 @@ const Navbar = () => {
       {user && isAdmin && (
         <li className="flex items-center justify-center">
           <Link to="/dashboard/adminHome">Dashboard</Link>
-        </li>
-      )}
-      {user ? (
-        <li className="flex items-center justify-center">
-          <button onClick={handleLogOut} className="btn btn-ghost">
-            LogOut
-          </button>
-        </li>
-      ) : (
-        <li className="flex items-center justify-center">
-          <button>
-            <Link to="/login">Login</Link>
-          </button>
         </li>
       )}
     </>
@@ -101,8 +82,29 @@ const Navbar = () => {
           {navOptions}
         </ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn flex items-center justify-center">Button</a>
+      <div className="navbar-end gap-5 mx-5">
+        {/* <a className="btn flex items-center justify-center">Button</a> */}
+        <li className="flex items-center justify-center">
+          <Link to="/dashboard/cart">
+            <button className="btn flex items-center justify-center">
+              <FaShoppingCart />
+              <div className="badge badge-secondary">+{cart?.length}</div>
+            </button>
+          </Link>
+        </li>
+        {user ? (
+          <li className="flex items-center justify-center">
+            <button onClick={handleLogOut} className="btn btn-ghost">
+              LogOut
+            </button>
+          </li>
+        ) : (
+          <li className="flex items-center justify-center">
+            <button>
+              <Link to="/login">Login</Link>
+            </button>
+          </li>
+        )}
       </div>
     </div>
   );
