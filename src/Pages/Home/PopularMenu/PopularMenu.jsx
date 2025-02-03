@@ -7,14 +7,11 @@ const PopularMenu = () => {
   const [menu] = useMenu();
   const popular = menu.filter((item) => item.category === "popular");
   return (
-    <section>
-      <SectionTitle
-        heading={"From Our Menu"}
-        subHeading={"Popular Items"}
-      ></SectionTitle>
-      <div className="grid md:grid-cols-2 gap-4">
+    <section className="container mx-auto px-4">
+      <SectionTitle heading="From Our Menu" subHeading="Popular Items" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
         {popular.map((item) => (
-          <MenuItem key={item._id} item={item}></MenuItem>
+          <MenuItem key={item._id} item={item} />
         ))}
       </div>
     </section>
