@@ -7,6 +7,7 @@ import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const [isAdmin] = useAdmin();
   const [cart] = useCart();
 
@@ -78,7 +79,7 @@ const NavBar = () => {
             {navOptions}
           </ul>
         </div>
-        <div className="navbar-end list-none gap-5 mx-5">
+        <div className="hidden lg:flex navbar-end list-none gap-5 mx-5">
           {/* <a className="btn">Get started</a> */}
           <li>
             <Link to="/dashboard/cart">
@@ -91,7 +92,9 @@ const NavBar = () => {
           {
             user ? <>
               <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
-              {/* <span>{user?.displayName}</span> */}
+              <span>
+                <img className="w-10 h-12 rounded-2xl cursor-pointer" src={user?.photoURL} alt="" />
+              </span>
             </> : <>
               <li><Link to="/login">Login</Link></li>
             </>
