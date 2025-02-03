@@ -92,7 +92,10 @@ const NavBar = () => {
             user ? <>
               <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
               <span>
-                <img className="w-10 h-12 rounded-2xl cursor-pointer" src={user?.photoURL} alt="" />
+                {
+                  user?.photoURL && <img className="w-10 h-12 rounded-2xl cursor-pointer" src={user?.photoURL} alt="" />
+
+                }
               </span>
             </> : <>
               <li><Link to="/login">Login</Link></li>
