@@ -1,117 +1,3 @@
-// import { useContext } from "react";
-// import { Link } from "react-router-dom";
-// import { AuthContext } from "../../../providers/AuthProvider";
-// import { FaShoppingCart } from "react-icons/fa";
-// import useCart from "../../../hooks/useCart";
-// import useAdmin from "../../../hooks/useAdmin";
-
-// const Navbar = () => {
-//   const { user, logOut } = useContext(AuthContext);
-//   const [cart] = useCart()
-//   const [isAdmin] = useAdmin()
-
-//   const handleLogOut = () => {
-//     logOut()
-//       .then(() => { })
-//       .catch((error) => console.log(error));
-//   };
-
-//   const navOptions = (
-//     <>
-//       <li className="flex items-center justify-center">
-//         <Link to="/">Home</Link>
-//       </li>
-//       <li className="flex items-center justify-center">
-//         <Link to="/contact-us">Contact Us</Link>
-//       </li>
-//       <li className="flex items-center justify-center">
-//         <Link to="/menu">Menu</Link>
-//       </li>
-//       <li className="flex items-center justify-center">
-//         <Link to="/order/salads">Order</Link>
-//       </li>
-//       <li className="flex items-center justify-center">
-//         <Link to="/signup">SignUp</Link>
-//       </li>
-//       {user && !isAdmin && (
-//         <li className="flex items-center justify-center">
-//           <Link to="/dashboard/userHome">Dashboard</Link>
-//         </li>
-//       )}
-//       {user && isAdmin && (
-//         <li className="flex items-center justify-center">
-//           <Link to="/dashboard/adminHome">Dashboard</Link>
-//         </li>
-//       )}
-//     </>
-//   );
-
-//   return (
-//     <div className="navbar fixed z-10 bg-opacity-30 max-w-full bg-black text-white">
-//       <div className="navbar-start">
-//         <div className="dropdown">
-//           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden flex items-center justify-center">
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               className="h-5 w-5"
-//               fill="none"
-//               viewBox="0 0 24 24"
-//               stroke="currentColor"
-//             >
-//               <path
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//                 strokeWidth="2"
-//                 d="M4 6h16M4 12h8m-8 6h16"
-//               />
-//             </svg>
-//           </div>
-//           <ul
-//             tabIndex={0}
-//             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-//           >
-//             {navOptions}
-//           </ul>
-//         </div>
-//         <Link to="/" className="btn btn-ghost text-xl flex items-center justify-center">
-//           FoodCode
-//         </Link>
-//       </div>
-//       <div className="navbar-center hidden lg:flex">
-//         <ul className="menu menu-horizontal px-1 flex items-center justify-center">
-//           {navOptions}
-//         </ul>
-//       </div>
-//       <div className="navbar-end gap-5 mx-5">
-//         {/* <a className="btn flex items-center justify-center">Button</a> */}
-//         <li className="flex items-center justify-center">
-//           <Link to="/dashboard/cart">
-//             <button className="btn flex items-center justify-center">
-//               <FaShoppingCart />
-//               <div className="badge badge-secondary">+{cart?.length}</div>
-//             </button>
-//           </Link>
-//         </li>
-//         {user ? (
-//           <li className="flex items-center justify-center">
-//             <button onClick={handleLogOut} className="btn btn-ghost">
-//               LogOut
-//             </button>
-//           </li>
-//         ) : (
-//           <li className="flex items-center justify-center">
-//             <button>
-//               <Link to="/login">Login</Link>
-//             </button>
-//           </li>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Navbar;
-
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
@@ -133,7 +19,7 @@ const NavBar = () => {
   const navOptions = <>
     <li><Link to="/">Home</Link></li>
     <li><Link to="/menu">Our Menu</Link></li>
-    <li><Link to="/order/salad">Order Food</Link></li>
+    <li><Link to="/order/salads">Order Food</Link></li>
     {
       // user ? 'true': 'false'
       // user ? condition ? 'double true' : 'one true' : 'false' 
@@ -143,22 +29,6 @@ const NavBar = () => {
     }
     {
       user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
-    }
-    <li>
-      <Link to="/dashboard/cart">
-        <button className="btn">
-          <FaShoppingCart className="mr-2"></FaShoppingCart>
-          <div className="badge badge-secondary">+{cart.length}</div>
-        </button>
-      </Link>
-    </li>
-    {
-      user ? <>
-        {/* <span>{user?.displayName}</span> */}
-        <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
-      </> : <>
-        <li><Link to="/login">Login</Link></li>
-      </>
     }
   </>
 
@@ -171,18 +41,61 @@ const NavBar = () => {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
-              {navOptions}
+              {/* {navOptions} */}
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/menu">Our Menu</Link></li>
+              <li><Link to="/order/salads">Order Food</Link></li>
+              {
+                // user ? 'true': 'false'
+                // user ? condition ? 'double true' : 'one true' : 'false' 
+              }
+              {
+                user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+              }
+              {/* <a className="btn">Get started</a> */}
+              <li>
+                <Link to="/dashboard/cart">
+                  <button className="btn">
+                    <FaShoppingCart className="mr-2"></FaShoppingCart>
+                    <div className="badge badge-secondary">+{cart.length}</div>
+                  </button>
+                </Link>
+              </li>
+              {
+                user ? <>
+                  {/* <span>{user?.displayName}</span> */}
+                  <button onClick={handleLogOut} className="btn">LogOut</button>
+                </> : <>
+                  <li><Link to="/login">Login</Link></li>
+                </>
+              }
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Bistro Boss</a>
+          <a className="btn btn-ghost normal-case text-xl">FoodCode</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             {navOptions}
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Get started</a>
+        <div className="navbar-end list-none gap-5 mx-5">
+          {/* <a className="btn">Get started</a> */}
+          <li>
+            <Link to="/dashboard/cart">
+              <button className="btn">
+                <FaShoppingCart className="mr-2"></FaShoppingCart>
+                <div className="badge badge-secondary">+{cart.length}</div>
+              </button>
+            </Link>
+          </li>
+          {
+            user ? <>
+              <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+              {/* <span>{user?.displayName}</span> */}
+            </> : <>
+              <li><Link to="/login">Login</Link></li>
+            </>
+          }
         </div>
       </div>
     </>
