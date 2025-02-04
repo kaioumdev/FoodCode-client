@@ -16,45 +16,38 @@ import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-
-  // TODO: get isAdmin value from the database
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex">
-      {/* dashboard side bar */}
-      <div className="w-64 min-h-screen bg-orange-400">
-        <ul className="menu p-4">
+    <div className="flex flex-col md:flex-row min-h-screen">
+      {/* Dashboard Sidebar */}
+      <div className="w-full md:w-64 bg-orange-400 p-4">
+        <ul className="menu space-y-2">
           {isAdmin ? (
             <>
               <li>
                 <NavLink to="/dashboard/adminHome">
-                  <FaHome></FaHome>
-                  Admin Home
+                  <FaHome /> Admin Home
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/addItems">
-                  <FaUtensils></FaUtensils>
-                  Add Items
+                  <FaUtensils /> Add Items
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/manageItems">
-                  <FaList></FaList>
-                  Manage Items
+                  <FaList /> Manage Items
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/bookings">
-                  <FaBook></FaBook>
-                  Manage Bookings
+                  <FaBook /> Manage Bookings
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/users">
-                  <FaUsers></FaUsers>
-                  All Users
+                  <FaUsers /> All Users
                 </NavLink>
               </li>
             </>
@@ -62,61 +55,54 @@ const Dashboard = () => {
             <>
               <li>
                 <NavLink to="/dashboard/userHome">
-                  <FaHome></FaHome>
-                  User Home
+                  <FaHome /> User Home
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/reservation">
-                  <FaCalendar></FaCalendar>
-                  Reservation
+                  <FaCalendar /> Reservation
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/cart">
-                  <FaShoppingCart></FaShoppingCart>
-                  My Cart ({cart.length})
+                  <FaShoppingCart /> My Cart ({cart.length})
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/review">
-                  <FaAd></FaAd>
-                  Add a Review
+                  <FaAd /> Add a Review
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/paymentHistory">
-                  <FaList></FaList>
-                  Payment History
+                  <FaList /> Payment History
                 </NavLink>
               </li>
             </>
           )}
-          {/* shared nav links */}
-          <div className="divider"></div>
+          {/* Shared Links */}
+          <div className="border-t my-2"></div>
           <li>
             <NavLink to="/">
-              <FaHome></FaHome>
-              Home
+              <FaHome /> Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/order/salads">
-              <FaSearch></FaSearch>
-              Menu
+            <NavLink to="/menu">
+              <FaSearch /> Menu
             </NavLink>
           </li>
           <li>
             <NavLink to="/contact-us">
-              <FaEnvelope></FaEnvelope>
-              Contact
+              <FaEnvelope /> Contact
             </NavLink>
           </li>
         </ul>
       </div>
-      {/* dashboard content */}
-      <div className="flex-1 p-8">
-        <Outlet></Outlet>
+
+      {/* Dashboard Content */}
+      <div className="flex-1 p-4">
+        <Outlet />
       </div>
     </div>
   );
