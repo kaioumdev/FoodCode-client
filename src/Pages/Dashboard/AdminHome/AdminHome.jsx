@@ -14,12 +14,14 @@ import {
   Pie,
   Legend,
 } from "recharts";
+
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const AdminHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
   const { data: stats = [] } = useQuery({
     queryKey: ["admin-stats"],
     queryFn: async () => {
@@ -36,23 +38,20 @@ const AdminHome = () => {
     },
   });
 
-  //custorm shape for the bar chart
   const getPath = (x, y, width, height) => {
     return `M${x},${y + height}C${x + width / 3},${y + height} ${x + width / 2
       },${y + height / 3}
-  ${x + width / 2}, ${y}
-  C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width
+    ${x + width / 2}, ${y}
+    C${x + width / 2},${y + height / 3} ${x + (2 * width) / 3},${y + height} ${x + width
       }, ${y + height}
-  Z`;
+    Z`;
   };
 
   const TriangleBar = (props) => {
     const { fill, x, y, width, height } = props;
-
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
 
-  //custom shape for the pie chart
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
     cx,
@@ -83,62 +82,62 @@ const AdminHome = () => {
     return { name: data.category, value: data.revenue };
   });
 
-
   return (
-    <div>
-      <h2 className="text-3xl">
-        <span>Hi, Welcome</span>
-        {" "}
-        {user?.displayName ? user.displayName : "Back"}
+    <div className="flex flex-col items-center justify-center p-6">
+      {/* Welcome Message */}
+      <h2 className="text-3xl font-bold text-center mb-6">
+        Hi, Welcome {user?.displayName ? user.displayName : "Back"}!
       </h2>
-      <div className="stats shadow">
-        <div className="stat">
+
+      {/* Stats Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-5xl text-center">
+        <div className="stat bg-white shadow-md p-4 rounded-lg">
           <div className="stat-figure text-secondary">
-            <FaDollarSign className="text-3xl"></FaDollarSign>
+            <FaDollarSign className="text-4xl mx-auto text-green-600" />
           </div>
-          <div className="stat-title">Revenue</div>
-          <div className="stat-value">${stats?.revenue}</div>
-          <div className="stat-desc">Jan 1st - Feb 1st</div>
+          <div className="stat-title text-lg font-semibold">Revenue</div>
+          <div className="stat-value text-xl">${stats?.revenue}</div>
+          <div className="stat-desc text-gray-500">Jan 1st - Feb 1st</div>
         </div>
 
-        <div className="stat">
+        <div className="stat bg-white shadow-md p-4 rounded-lg">
           <div className="stat-figure text-secondary">
-            <FaUsers className="text-3xl"></FaUsers>
+            <FaUsers className="text-4xl mx-auto text-blue-500" />
           </div>
-          <div className="stat-title">Users</div>
-          <div className="stat-value">{stats?.users}</div>
-          <div className="stat-desc">↗︎ 400 (22%)</div>
+          <div className="stat-title text-lg font-semibold">Users</div>
+          <div className="stat-value text-xl">{stats?.users}</div>
+          <div className="stat-desc text-gray-500">↗︎ 400 (22%)</div>
         </div>
 
-        <div className="stat">
+        <div className="stat bg-white shadow-md p-4 rounded-lg">
           <div className="stat-figure text-secondary">
-            <FaBook className="text-3xl"></FaBook>
+            <FaBook className="text-4xl mx-auto text-orange-500" />
           </div>
-          <div className="stat-title">Menu Items</div>
-          <div className="stat-value">{stats?.menuItems}</div>
-          <div className="stat-desc">↘︎ 90 (14%)</div>
+          <div className="stat-title text-lg font-semibold">Menu Items</div>
+          <div className="stat-value text-xl">{stats?.menuItems}</div>
+          <div className="stat-desc text-gray-500">↘︎ 90 (14%)</div>
         </div>
-        <div className="stat">
+
+        <div className="stat bg-white shadow-md p-4 rounded-lg">
           <div className="stat-figure text-secondary">
-            <FaBook className="text-3xl"></FaBook>
+            <FaBook className="text-4xl mx-auto text-purple-500" />
           </div>
-          <div className="stat-title">Orders</div>
-          <div className="stat-value">{stats?.orders}</div>
-          <div className="stat-desc">↘︎ 90 (14%)</div>
+          <div className="stat-title text-lg font-semibold">Orders</div>
+          <div className="stat-value text-xl">{stats?.orders}</div>
+          <div className="stat-desc text-gray-500">↘︎ 90 (14%)</div>
         </div>
       </div>
-      <div className="flex justify-between items-center">
-        <div className="w-1/2">
+
+      {/* Charts Section */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-5xl mt-8">
+        {/* Bar Chart */}
+        <div className="w-full md:w-1/2">
           <BarChart
-            width={500}
+            width={400}
             height={300}
             data={chartData}
-            margin={{
-              top: 20,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
+            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+            className="mx-auto"
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="category" />
@@ -150,13 +149,15 @@ const AdminHome = () => {
               label={{ position: "top" }}
             >
               {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={colors[index % 7]} />
+                <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
               ))}
             </Bar>
           </BarChart>
         </div>
-        <div className="w-1/2">
-          <PieChart width={400} height={400}>
+
+        {/* Pie Chart */}
+        <div className="w-full md:w-1/2">
+          <PieChart width={400} height={400} className="mx-auto">
             <Pie
               data={pieChartData}
               cx="50%"
@@ -168,13 +169,10 @@ const AdminHome = () => {
               dataKey="value"
             >
               {pieChartData.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Legend></Legend>
+            <Legend />
           </PieChart>
         </div>
       </div>
