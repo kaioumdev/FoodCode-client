@@ -133,6 +133,7 @@ const NavBar = () => {
     <>
       <li><Link to="/">Home</Link></li>
       <li><Link to="/menu">Our Menu</Link></li>
+      <li><Link to="/contact-us">Contact Us</Link></li>
       <li><Link to="/order/salads">Order Food</Link></li>
       {user && (isAdmin ? <li><Link to="/dashboard/adminHome">Dashboard</Link></li> : <li><Link to="/dashboard/userHome">Dashboard</Link></li>)}
     </>
