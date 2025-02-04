@@ -175,78 +175,117 @@ import Img from "../../assets/others/authentication2.png";
 // export default SignUp;
 
 const Signup = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const navigate = useNavigate();
+  const onSubmit = (data) => {
+    createUser(data.email, data.password).then((result) => {
+      const logedInuser = result.user;
+      updateUserProfile(data.name, data.photoURL).then(() => {
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+          photoURL: data.photoURL,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            reset();
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "User created successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          }
+        });
+      });
+    });
+  };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl flex flex-col md:flex-row-reverse">
+    <>
+      <Helmet>
+        <title>FoodCode | Sign Up</title>
+      </Helmet>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-4xl flex flex-col md:flex-row-reverse">
 
-        {/* Right Side - Illustration */}
-        <div className="hidden md:flex md:w-1/2 bg-gray-50 justify-center items-center p-6">
-          <img
-            src={Img} // Replace with your actual image
-            alt="Illustration"
-            className="w-full max-w-xs"
-          />
-        </div>
-
-        {/* Left Side - Signup Form */}
-        <div className="w-full md:w-1/2 p-8">
-          <h2 className="text-2xl font-semibold text-center mb-6">Create Account</h2>
-
-          <form>
-            {/* Name Input */}
-            <label className="block text-gray-700">Full Name</label>
-            <input
-              type="text"
-              placeholder="Enter your name"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
+          {/* Right Side - Illustration */}
+          <div className="hidden md:flex md:w-1/2 bg-gray-50 justify-center items-center p-6">
+            <img
+              src={Img} // Replace with your actual image
+              alt="Illustration"
+              className="w-full max-w-xs"
             />
+          </div>
 
-            {/* Email Input */}
-            <label className="block text-gray-700">Email</label>
-            <input
-              type="email"
-              placeholder="Type here"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
-            />
+          {/* Left Side - Signup Form */}
+          <div className="w-full md:w-1/2 p-8">
+            <h2 className="text-2xl font-semibold text-center mb-6">Create Account</h2>
 
-            {/* Password Input */}
-            <label className="block text-gray-700">Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
-            />
+            <form>
+              {/* Name Input */}
+              <label className="block text-gray-700">Full Name</label>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
+              />
 
-            {/* Sign Up Button */}
-            <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-2 rounded-md shadow-md hover:opacity-90">
-              Sign Up
-            </button>
+              {/* Email Input */}
+              <label className="block text-gray-700">Email</label>
+              <input
+                type="email"
+                placeholder="Type here"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
+              />
 
-            {/* Already have an account? */}
-            <p className="text-center mt-4 text-sm">
-              Already have an account? <a href="#" className="text-orange-500 font-semibold">Login here</a>
-            </p>
+              {/* Password Input */}
+              <label className="block text-gray-700">Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
+              />
 
-            {/* Social Signup */}
-            <div className="text-center mt-6">
-              <p className="text-gray-600 text-sm">Or sign up with</p>
-              <div className="flex justify-center gap-4 mt-2">
-                <a href="#" className="text-gray-500 hover:text-black text-2xl">
-                  <i className="fab fa-facebook"></i>
-                </a>
-                <button className="text-gray-500 hover:text-black text-2xl">
-                  {/* <i className="fab fa-google"></i> */}
-                  <SocialLogin></SocialLogin>
-                </button>
-                <a href="#" className="text-gray-500 hover:text-black text-2xl">
-                  <i className="fab fa-twitter"></i>
-                </a>
+              {/* Sign Up Button */}
+              <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-2 rounded-md shadow-md hover:opacity-90">
+                Sign Up
+              </button>
+
+              {/* Already have an account? */}
+              <p className="text-center mt-4 text-sm">
+                Already have an account? <a href="#" className="text-orange-500 font-semibold">Login here</a>
+              </p>
+
+              {/* Social Signup */}
+              <div className="text-center mt-6">
+                <p className="text-gray-600 text-sm">Or sign up with</p>
+                <div className="flex justify-center gap-4 mt-2">
+                  <a href="#" className="text-gray-500 hover:text-black text-2xl">
+                    <i className="fab fa-facebook"></i>
+                  </a>
+                  <button className="text-gray-500 hover:text-black text-2xl">
+                    {/* <i className="fab fa-google"></i> */}
+                    <SocialLogin></SocialLogin>
+                  </button>
+                  <a href="#" className="text-gray-500 hover:text-black text-2xl">
+                    <i className="fab fa-twitter"></i>
+                  </a>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
