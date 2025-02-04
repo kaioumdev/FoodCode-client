@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import Cover from '../Shared/Cover/Cover'
 import cotactIMg from '../../assets/contact/banner.jpg'
@@ -53,6 +53,64 @@ const ContactUs = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            <SectionTitle heading={"contact form"} subHeading={"Send Us a Message"}></SectionTitle>
+            <div className="max-w-3xl mx-auto p-6 bg-gray-100 shadow-lg rounded-lg">
+                <form className="space-y-4">
+                    {/* Name & Email Fields */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block font-semibold">Name*</label>
+                            <input
+                                type="text"
+                                placeholder="Enter your name"
+                                className="w-full p-3 border rounded-lg"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block font-semibold">Email*</label>
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                className="w-full p-3 border rounded-lg"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    {/* Phone Field */}
+                    <div>
+                        <label className="block font-semibold">Phone*</label>
+                        <input
+                            type="tel"
+                            placeholder="Enter your phone number"
+                            className="w-full p-3 border rounded-lg"
+                            required
+                        />
+                    </div>
+
+                    {/* Message Field */}
+                    <div>
+                        <label className="block font-semibold">Message*</label>
+                        <textarea
+                            placeholder="Write your message here"
+                            className="w-full p-3 border rounded-lg h-32"
+                            required
+                        ></textarea>
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="text-center">
+                        <button
+                            type="submit"
+                            className={`bg-yellow-700 text-white px-6 py-3 rounded-lg flex items-center justify-center gap-2 opacity-50 cursor-not-allowed
+                                }`}
+                        >
+                            Send Message ✈️
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     )
