@@ -11,14 +11,14 @@ const MenuCategory = ({ items, title, img }) => {
   const displayedItems = showAll ? items : items.slice(0, 6);
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-8">
       {title && title !== "offered" && <Cover img={img} title={title}></Cover>}
-      <div className="grid md:grid-cols-2 gap-4 my-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-16">
         {displayedItems.map((item) => (
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
-      <div className="flex justify-center items-center gap-5">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-5">
         {/* Show "See More" button only if there are more than 6 items and not all are shown */}
         {items.length > 6 && !showAll && (
           <button
