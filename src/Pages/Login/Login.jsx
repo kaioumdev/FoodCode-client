@@ -220,7 +220,7 @@ const Login = () => {
                 type="submit"
                 // className="btn btn-primary" 
                 value="login"
-                className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-2 rounded-md shadow-md hover:opacity-90">
+                className="cursor-pointer w-full bg-gradient-to-r from-yellow-400 to-yellow-500 text-white py-2 rounded-md shadow-md hover:opacity-90">
                 Sign In
               </button>
 
@@ -236,11 +236,9 @@ const Login = () => {
                   <a href="#" className="text-gray-500 hover:text-black text-2xl">
                     <i className="fab fa-facebook"></i>
                   </a>
-                  <a href="#" className="text-gray-500 hover:text-black text-2xl">
-                    <i className="fab fa-google">
-                      <SocialLogin></SocialLogin>
-                    </i>
-                  </a>
+                  <button className="text-gray-500 hover:text-black text-2xl">
+                    <SocialLogin></SocialLogin>
+                  </button>
                   <a href="#" className="text-gray-500 hover:text-black text-2xl">
                     <i className="fab fa-twitter"></i>
                   </a>
