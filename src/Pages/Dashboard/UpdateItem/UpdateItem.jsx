@@ -1,90 +1,93 @@
+/* eslint-disable no-unused-vars */
 import { useLoaderData } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-import { FaUtensils } from "react-icons/fa";
 import { useState } from "react";
+import { FaUtensils, FaUpload } from "react-icons/fa";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const UpdateItem = () => {
   const { name, category, price, recipe, image, _id } = useLoaderData();
-  const { register, handleSubmit, reset, watch } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+
+  // State for image preview
   const [previewImage, setPreviewImage] = useState(image);
 
   const onSubmit = async (data) => {
-    const imageFile = { image: data.image[0] };
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
+    let imageURL = previewImage; // Default to existing image
 
-    if (res.data.success) {
-      const menuItem = {
-        name: data.name,
-        category: data.category,
-        price: data.price,
-        recipe: data.recipe,
-        image: res.data.data.display_url,
-      };
+    // If a new image is selected, upload it
+    if (data.image.length > 0) {
+      const imageFile = new FormData();
+      imageFile.append("image", data.image[0]);
 
-      const menuRes = await axiosSecure.patch(`menu/${_id}`, menuItem);
-      reset();
+      const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-      if (menuRes.data.modifiedCount > 0) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `"${data.name}" has been updated successfully!`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      if (res.data.success) {
+        imageURL = res.data.data.display_url;
       }
+    }
+
+    // Prepare the updated menu item data
+    const menuItem = {
+      name: data.name,
+      category: data.category,
+      price: data.price,
+      recipe: data.recipe,
+      image: imageURL,
+    };
+
+    // Send update request
+    const menuRes = await axiosSecure.patch(`menu/${_id}`, menuItem);
+    if (menuRes.data.modifiedCount > 0) {
+      reset();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${data.name} has been updated successfully`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto p-6 md:p-8 bg-white dark:bg-gray-900 shadow-xl rounded-lg">
       <SectionTitle heading="Update Item" subHeading="Refresh Info" />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-lg rounded-lg p-6 space-y-6"
-      >
         {/* Recipe Name */}
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text font-semibold">Recipe Name</span>
-          </label>
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Recipe Name</label>
           <input
             {...register("name", { required: true })}
-            required
             type="text"
             defaultValue={name}
             placeholder="Enter recipe name"
-            className="input input-bordered w-full"
+            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
           />
         </div>
 
-        {/* Category & Price */}
-        <div className="flex flex-col md:flex-row gap-6">
+        {/* Category & Price (Grid Layout for Responsiveness) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Category */}
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-semibold">Category</span>
-            </label>
+          <div>
+            <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Category</label>
             <select
               defaultValue={category}
               {...register("category", { required: true })}
-              className="select select-bordered w-full"
+              className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option disabled value="default">
-                Select a Category
-              </option>
+              <option disabled value="default">Select a Category</option>
               <option value="salad">Salad</option>
               <option value="pizza">Pizza</option>
               <option value="soup">Soup</option>
@@ -94,49 +97,33 @@ const UpdateItem = () => {
           </div>
 
           {/* Price */}
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-semibold">Recipe Price</span>
-            </label>
+          <div>
+            <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Recipe Price</label>
             <input
               {...register("price", { required: true })}
               defaultValue={price}
               type="text"
               placeholder="Enter price"
-              className="input input-bordered w-full"
+              className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
         </div>
 
         {/* Recipe Details */}
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text font-semibold">Recipe Details</span>
-          </label>
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Recipe Details</label>
           <textarea
             defaultValue={recipe}
             {...register("recipe")}
-            className="textarea textarea-bordered h-24 w-full"
+            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter recipe details"
+            rows="4"
           ></textarea>
-        </div>
-
-        {/* Image Upload */}
-        <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text font-semibold">Upload Image</span>
-          </label>
-          <input
-            {...register("image", { required: true })}
-            type="file"
-            className="file-input w-full"
-            onChange={(e) => setPreviewImage(URL.createObjectURL(e.target.files[0]))}
-          />
         </div>
 
         {/* Image Preview */}
         {previewImage && (
-          <div className="flex justify-center">
+          <div className="flex justify-center my-4">
             <img
               src={previewImage}
               alt="Preview"
@@ -145,8 +132,32 @@ const UpdateItem = () => {
           </div>
         )}
 
+        {/* Image Upload */}
+        <div>
+          <label className="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Upload New Image (Optional)</label>
+          <div className="flex items-center gap-4">
+            <input
+              {...register("image")}
+              type="file"
+              className="hidden"
+              id="fileInput"
+              onChange={(e) => setPreviewImage(URL.createObjectURL(e.target.files[0]))}
+            />
+            <label
+              htmlFor="fileInput"
+              className="cursor-pointer flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all"
+            >
+              <FaUpload />
+              Choose File
+            </label>
+          </div>
+        </div>
+
         {/* Submit Button */}
-        <button className="btn w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition">
+        <button
+          type="submit"
+          className="w-full md:w-auto px-6 py-3 bg-green-500 text-white font-semibold rounded-lg flex items-center justify-center gap-2 hover:bg-green-600 transition-all"
+        >
           Update Menu Item <FaUtensils />
         </button>
       </form>
