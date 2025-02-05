@@ -14,8 +14,6 @@ const AllUsers = () => {
     },
   });
 
-  console.log(users)
-
   const handleDelete = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -41,20 +39,36 @@ const AllUsers = () => {
     });
   };
 
+  // const handleMakeAdmin = (user) => {
+  //   axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+  //     if (res.data.modifiedCount > 0) {
+  //       refetch();
+  //       Swal.fire({
+  //         position: "top-end",
+  //         icon: "success",
+  //         title: `${user?.name} is now an Admin!`,
+  //         showConfirmButton: false,
+  //         timer: 1500,
+  //       });
+  //     }
+  //   });
+  // };
+
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
       if (res.data.modifiedCount > 0) {
-        refetch();
+        refetch(); // Refresh the user list
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: `${user?.name} is now an Admin!`,
+          title: `${user.name} is now ${res.data.newRole === "admin" ? "an Admin" : "a User"}!`,
           showConfirmButton: false,
           timer: 1500,
         });
       }
     });
   };
+
 
   return (
     <div>
@@ -80,7 +94,7 @@ const AllUsers = () => {
                   <th>{index + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>
+                  {/* <td>
                     {user.role === "admin" ? (
                       "Admin"
                     ) : (
@@ -91,7 +105,16 @@ const AllUsers = () => {
                         <FaUsers />
                       </button>
                     )}
+                  </td> */}
+                  <td>
+                    <button
+                      onClick={() => handleMakeAdmin(user)}
+                      className={`btn btn-xl ${user.role === "admin" ? "bg-red-500" : "bg-orange-500"} xl`}
+                    >
+                      <FaUsers /> {user.role === "admin" ? "Make User" : "Make Admin"}
+                    </button>
                   </td>
+
                   <td>
                     <button
                       onClick={() => handleDelete(user)}
