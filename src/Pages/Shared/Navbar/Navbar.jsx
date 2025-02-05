@@ -115,6 +115,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { FaShoppingCart } from 'react-icons/fa';
 import useCart from "../../../hooks/useCart";
 import useAdmin from "../../../hooks/useAdmin";
+import profile from "../../../assets/others/profile.png";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -184,7 +185,7 @@ const NavBar = () => {
         {user ? (
           <>
             <button onClick={handleLogOut} className="btn btn-ghost">Log Out</button>
-            {user.photoURL && <img className="w-10 h-10 rounded-full cursor-pointer" src={user.photoURL} alt="User Profile" />}
+            {user.photoURL ? <img className="w-10 h-10 rounded-full cursor-pointer" src={user.photoURL} alt="User Profile" /> : <img className="w-10 h-10 rounded-full cursor-pointer" src={profile} alt="User Profile" />}
           </>
         ) : (
           <li><Link to="/login">Login</Link></li>
