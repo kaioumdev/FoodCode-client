@@ -149,7 +149,6 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("isAdmin", isAdmin);
 
   // Restrict non-admin users from accessing Add Items & Manage Items
   const restrictedRoutes = ["/dashboard/addItems", "/dashboard/manageItems"];
