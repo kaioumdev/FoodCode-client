@@ -10,33 +10,33 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
 
-  // axiosSecure.interceptors.request.use(
-  //   function (config) {
-  //     const token = localStorage.getItem("access-token");
-  //     console.log("Request stopped by interceptor before adding token", token);
-  //     if (token) {
-  //       config.headers.authorization = `Bearer ${token}`;
-  //     }
-  //     return config;
-  //   },
-  //   function (error) {
-  //     return Promise.reject(error);
-  //   }
-  // );
   axiosSecure.interceptors.request.use(
-    (config) => {
-      const token = localStorage.getItem('accessToken'); // Retrieve token from localStorage/sessionStorage
+    function (config) {
+      const token = localStorage.getItem("access-token");
+      // console.log("Request stopped by interceptor before adding token", token);
       if (token) {
         config.headers.authorization = `Bearer ${token}`;
-      } else {
-        console.warn('⚠️ No token found, request might be blocked.');
       }
       return config;
     },
-    (error) => {
+    function (error) {
       return Promise.reject(error);
     }
   );
+  // axiosSecure.interceptors.request.use(
+  //   (config) => {
+  //     const token = localStorage.getItem('accessToken'); // Retrieve token from localStorage/sessionStorage
+  //     if (token) {
+  //       config.headers.authorization = `Bearer ${token}`;
+  //     } else {
+  //       console.warn('⚠️ No token found, request might be blocked.');
+  //     }
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
 
   axiosSecure.interceptors.response.use(
     function (response) {
