@@ -12,8 +12,8 @@ const useAdmin = () => {
     queryFn: async () => {
       //   console.log("asking or checking is admin", user);
       const res = await axiosSecure.get(`/users/admin/${user.email}`);
-      // console.log("check is admin or not", res.data);
-      return res.data?.admin;
+      console.log("check is admin or not", res.data);
+      return res.data?.role;
     },
   });
   return [isAdmin, isAdminLoading];
