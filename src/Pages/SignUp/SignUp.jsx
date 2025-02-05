@@ -83,14 +83,14 @@ const Signup = () => {
               <input
                 type="text"
                 name="photoURL"
-                {...register("photoURL", { required: true })}
+                {...register("photoURL")}
                 placeholder="name"
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
-                required
+              // required
               />
-              {errors.photoURL && (
+              {/* {errors.photoURL && (
                 <span className="text-red-600">Photo URL is required</span>
-              )}
+              )} */}
               {/* Email Input */}
               <label className="block text-gray-700">Email</label>
               <input
