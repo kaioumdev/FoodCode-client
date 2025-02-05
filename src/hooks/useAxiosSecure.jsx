@@ -23,20 +23,6 @@ const useAxiosSecure = () => {
       return Promise.reject(error);
     }
   );
-  // axiosSecure.interceptors.request.use(
-  //   (config) => {
-  //     const token = localStorage.getItem('accessToken'); // Retrieve token from localStorage/sessionStorage
-  //     if (token) {
-  //       config.headers.authorization = `Bearer ${token}`;
-  //     } else {
-  //       console.warn('⚠️ No token found, request might be blocked.');
-  //     }
-  //     return config;
-  //   },
-  //   (error) => {
-  //     return Promise.reject(error);
-  //   }
-  // );
 
   axiosSecure.interceptors.response.use(
     function (response) {
@@ -47,7 +33,7 @@ const useAxiosSecure = () => {
       // console.log("Status error in the interceptors response", status);
       if (status === 401 || status === 403) {
         await logOut();
-        navigate("/");
+        navigate("/login");
       }
       return Promise.reject(error);
     }
