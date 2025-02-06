@@ -10,9 +10,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import useSocialLogin from "../../components/SocialLogin/SocialLogin";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
+  const { signInWithGoogle, signInWithGithub } = useAuth();
+  const { handleSocialLogin } = useSocialLogin()
   const location = useLocation();
   let navigate = useNavigate();
 
@@ -136,7 +141,7 @@ const Login = () => {
               <div className="text-center mt-6">
                 <p className="text-gray-600 text-sm">Or sign in with</p>
                 <div className="flex justify-center gap-4 mt-2">
-                  <a href="#" className="text-gray-500 hover:text-black text-2xl">
+                  {/* <a href="#" className="text-gray-500 hover:text-black text-2xl">
                     <i className="fab fa-facebook"></i>
                   </a>
                   <button className="text-gray-500 hover:text-black text-2xl">
@@ -144,7 +149,22 @@ const Login = () => {
                   </button>
                   <a href="#" className="text-gray-500 hover:text-black text-2xl">
                     <i className="fab fa-twitter"></i>
-                  </a>
+                  </a> */}
+                  {/* Google Login Button */}
+                  <button
+                    onClick={() => handleSocialLogin(signInWithGoogle)}
+                    className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:opacity-90"
+                  >
+                    <FaGoogle /> Google
+                  </button>
+
+                  {/* GitHub Login Button */}
+                  <button
+                    onClick={() => handleSocialLogin(signInWithGithub)}
+                    className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md shadow-md hover:opacity-90"
+                  >
+                    <FaGithub /> GitHub
+                  </button>
                 </div>
               </div>
             </form>

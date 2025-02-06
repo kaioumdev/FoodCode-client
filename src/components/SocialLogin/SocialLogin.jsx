@@ -3,12 +3,13 @@ import { FaGoogle } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 
-const SocialLogin = () => {
-  const { signInWithGoogle, signInWithGithub } = useAuth();
+const useSocialLogin = () => {
+  const { signInWithGoogle } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
+  const handleSocialLogin = (provider) => {
+    provider()
+      // signInWithGoogle()
       .then((result) => {
         // updateUserProfile(result.user.displayName, result.user.photoURL);
         const userInfo = {
@@ -25,12 +26,7 @@ const SocialLogin = () => {
         console.log(error);
       });
   };
-  return (
-    <div className="flex justify-evenly bg-amber-600 p-3 mb-5 mx-8 rounded-md items-center">
-      <FaGoogle onClick={handleGoogleSignIn}></FaGoogle>
-      {/* <button >SignInWithGoogle</button> */}
-    </div>
-  );
+  return { handleSocialLogin }
 };
 
-export default SocialLogin;
+export default useSocialLogin;
