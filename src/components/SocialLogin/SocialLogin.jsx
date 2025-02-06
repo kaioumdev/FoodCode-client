@@ -11,6 +11,7 @@ const useSocialLogin = () => {
     provider()
       // signInWithGoogle()
       .then((result) => {
+        console.log(result);
         // updateUserProfile(result.user.displayName, result.user.photoURL);
         const userInfo = {
           name: result.user?.displayName,
