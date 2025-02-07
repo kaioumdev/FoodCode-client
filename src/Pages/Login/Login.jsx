@@ -10,8 +10,8 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
-import useSocialLogin from "../../components/SocialLogin/SocialLogin";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import useSocialLogin from "../../hooks/useSocialLogin";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
