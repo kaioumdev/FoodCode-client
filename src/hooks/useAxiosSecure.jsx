@@ -10,36 +10,40 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
 
-  axiosSecure.interceptors.request.use(
-    function (config) {
-      const token = localStorage.getItem("access-token");
-      // console.log("Request stopped by interceptor before adding token", token);
-      if (token) {
-        config.headers.authorization = `Bearer ${token}`;
+  try {
+    axiosSecure.interceptors.request.use(
+      function (config) {
+        const token = localStorage.getItem("access-token");
+        // console.log("Request stopped by interceptor before adding token", token);
+        if (token) {
+          config.headers.authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      function (error) {
+        return Promise.reject(error);
       }
-      return config;
-    },
-    function (error) {
-      return Promise.reject(error);
-    }
-  );
+    );
 
-  axiosSecure.interceptors.response.use(
-    function (response) {
-      return response;
-    },
-    async (error) => {
-      const status = error.response ? error.response.status : null;
-      // console.log("Status error in the interceptors response", status);
-      if (status === 401 || status === 403) {
-        await logOut();
-        navigate("/login");
+    axiosSecure.interceptors.response.use(
+      function (response) {
+        return response;
+      },
+      async (error) => {
+        const status = error.response ? error.response.status : null;
+        // console.log("Status error in the interceptors response", status);
+        if (status === 401 || status === 403) {
+          await logOut();
+          navigate("/login");
+        }
+        return Promise.reject(error);
       }
-      return Promise.reject(error);
-    }
-  );
+    );
 
-  return axiosSecure;
+    return axiosSecure;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default useAxiosSecure;
