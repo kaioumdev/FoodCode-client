@@ -5,13 +5,17 @@ import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import Img from "../../assets/others/authentication2.png";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import useSocialLogin from "../../hooks/useSocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const { signInWithGoogle, signInWithGithub } = useAuth();
+  const { handleSocialLogin } = useSocialLogin()
   const {
     register,
     handleSubmit,
@@ -145,24 +149,29 @@ const Signup = () => {
               <p className="text-center mt-4 text-sm">
                 Already have an account? <Link to="/login" className="text-orange-500 font-semibold">Login here</Link>
               </p>
-
-              {/* Social Signup */}
-              <div className="text-center mt-6">
-                <p className="text-gray-600 text-sm">Or sign up with</p>
-                <div className="flex justify-center gap-4 mt-2">
-                  <a href="#" className="text-gray-500 hover:text-black text-2xl">
-                    <i className="fab fa-facebook"></i>
-                  </a>
-                  <button className="text-gray-500 hover:text-black text-2xl">
-                    {/* <i className="fab fa-google"></i> */}
-                    <SocialLogin></SocialLogin>
-                  </button>
-                  <a href="#" className="text-gray-500 hover:text-black text-2xl">
-                    <i className="fab fa-twitter"></i>
-                  </a>
-                </div>
-              </div>
             </form>
+            {/* Social Signup */}
+            {/* Social Login */}
+            <div className="text-center mt-6">
+              <p className="text-gray-600 text-sm">Or sign in with</p>
+              <div className="flex justify-center gap-4 mt-2">
+                {/* Google Login Button */}
+                <button
+                  onClick={() => handleSocialLogin(signInWithGoogle)}
+                  className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:opacity-90"
+                >
+                  <FaGoogle /> Google
+                </button>
+
+                {/* GitHub Login Button */}
+                <button
+                  onClick={() => handleSocialLogin(signInWithGithub)}
+                  className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded-md shadow-md hover:opacity-90"
+                >
+                  <FaGithub /> GitHub
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
