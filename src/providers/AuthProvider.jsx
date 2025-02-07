@@ -63,10 +63,12 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         //get token and store client side to secure access user at calling useAxiosSecure
-        const userInfo = { email: currentUser.email };
+        const userInfo = { email: currentUser?.email };
         axiosPublic.post("/auth/jwt", userInfo).then((res) => {
+          console.log("Response", res.data);
           if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
+            console.log("Token", res.data.token);
+            localStorage.setItem("access-token", res?.data?.token);
             setLoading(false);
           }
         });
