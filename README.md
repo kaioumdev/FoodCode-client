@@ -46,7 +46,6 @@ The FoodCode frontend is a React-based application designed to provide a seamles
    ```
 3. Create a `.env` file and add the following environment variables:
    ```env
-   REACT_APP_API_URL=<your-backend-api-url>
    REACT_APP_STRIPE_PUBLIC_KEY=<your-stripe-public-key>
    ```
 4. Start the application:
