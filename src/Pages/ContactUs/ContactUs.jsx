@@ -31,6 +31,12 @@ const ContactUs = () => {
         },
     ];
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // TODO: send form data to server
+        alert("Form submitted successfully!");
+    };
+
     return (
         <div>
             <Helmet>
@@ -56,7 +62,7 @@ const ContactUs = () => {
             </div>
             <SectionTitle heading={"contact form"} subHeading={"Send Us a Message"}></SectionTitle>
             <div className="max-w-3xl mx-auto p-6 bg-gray-100 shadow-lg rounded-lg">
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Name & Email Fields */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
