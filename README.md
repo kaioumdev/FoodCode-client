@@ -39,8 +39,8 @@ The FoodCode frontend is a React-based application designed to provide a seamles
 ### Steps
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
-   cd foodcode-frontend
+   git clone https://github.com/kaiyumdev/FoodCode-client
+   cd FoodCode-client
    ```
 2. Install dependencies:
    ```sh
