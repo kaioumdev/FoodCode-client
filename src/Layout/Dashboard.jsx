@@ -105,19 +105,6 @@ const Dashboard = () => {
                   <FaList /> Payment History
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="/dashboard/adminHome">
-                  <FaHome /> User Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/cart">
-                  <FaShoppingCart /> My Cart ({cart.length})
-                </NavLink>
-              </li> */}
-
-
-
             </>
           )}
           {/* Shared Links */}
