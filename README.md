@@ -1,12 +1,3 @@
-<!-- # React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh -->
-
 # FoodCode Frontend
 
 ## Overview
@@ -14,7 +5,7 @@ The FoodCode frontend is a React-based application designed to provide a seamles
 
 ## Deploying Live
 
-To deploy this frontend application live, you can use platforms like Netlify, Vercel, or GitHub Pages. 
+To deploy your frontend application live, you can use platforms like Netlify, Vercel, or GitHub Pages. 
 
  **Vercel Live LInk:** [Live](https://food-code-client.vercel.app).
 
