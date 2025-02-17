@@ -12,7 +12,11 @@ Currently, two official plugins are available:
 ## Overview
 The FoodCode frontend is a React-based application designed to provide a seamless user experience for browsing menus, managing carts, making payments, and handling admin functionalities. It is built using React.js, Tailwind CSS, React Router, and integrates with the backend API for authentication, menu management, and order processing.
 
-- [Live-Link](https://food-code-client.vercel.app/)
+## Deploying Live
+
+To deploy this frontend application live, you can use platforms like Netlify, Vercel, or GitHub Pages. 
+
+ **Vercel Live LInk:** [Live](https://food-code-client.vercel.app).
 
 ## Features
 - **User Authentication**: Secure login and signup using JWT authentication.
@@ -83,7 +87,3 @@ The frontend communicates with the backend via Axios for authentication, menu ma
 3. Commit changes (`git commit -m 'Added new feature'`).
 4. Push to the branch (`git push origin feature-branch`).
 5. Open a pull request.
-
-## License
-This project is licensed under the MIT License.
-
