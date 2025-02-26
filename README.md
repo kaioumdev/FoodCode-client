@@ -34,7 +34,7 @@ To deploy your frontend application live, you can use platforms like Netlify, Ve
 ### Steps
 1. Clone the repository:
    ```sh
-   git clone https://github.com/kaiyumdev/FoodCode-client
+   git clone https://github.com/kaioumdev/FoodCode-client
    cd FoodCode-client
    ```
 2. Install dependencies:
