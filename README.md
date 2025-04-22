@@ -49,7 +49,7 @@ To deploy your frontend application live, you can use platforms like Netlify, Ve
    ```sh
    npm start
    ```
-5. The application will run on `http://localhost:3000`
+5. The application will run on `https://food-code-client.vercel.app`
 
 ## Project Structure
 ```
