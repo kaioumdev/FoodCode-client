@@ -18,7 +18,6 @@ const useSocialLogin = () => {
                     })
             })
             .catch((error) => {
-                console.log(error);
             });
     };
     return { handleSocialLogin }
